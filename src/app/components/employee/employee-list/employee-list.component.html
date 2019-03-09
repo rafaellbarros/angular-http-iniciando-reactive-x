@@ -4,7 +4,7 @@
     <ng-container *ngIf="isLoanding" >
       <ng-container *ngTemplateOutlet="loading"></ng-container>
     </ng-container>
-  <div class="row" *ngIf="!isLoanding">
+  <div class="row">
     <h1>Nossos empregados - {{ data | date: 'dd/MM/yyyy' }}</h1>
     <p salaryColor="valor"></p>
     <table class="table table-striped">

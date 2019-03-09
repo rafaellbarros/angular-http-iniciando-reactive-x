@@ -16,6 +16,7 @@ import { ComponenteInlineComponent } from './components/componente-inline/compon
 import { ModalComponent } from './components/modal/modal.component';
 import { NgContentTesteComponent } from './components/ng-content-teste/ng-content-teste.component';
 import { EmployeeDetailModalComponent } from './components/employee/employee-detail-modal/employee-detail-modal.component';
+import { InputDirective } from './directives/input.directive';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { EmployeeDetailModalComponent } from './components/employee/employee-det
     ComponenteInlineComponent,
     ModalComponent,
     NgContentTesteComponent,
-    EmployeeDetailModalComponent
+    EmployeeDetailModalComponent,
+    InputDirective
   ],
   imports: [
     BrowserModule,
