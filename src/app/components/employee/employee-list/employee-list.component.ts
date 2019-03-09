@@ -6,6 +6,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { EmployeeDeleteModalComponent } from '../employee-delete-modal/employee-delete-modal.component';
 import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit-modal.component';
 import { EmployeeNewModalComponent } from '../employee-new-modal/employee-new-modal.component';
+import { ModalService } from '../../modal-dynamic-components/modal.service';
 
 
 @Component({
@@ -27,16 +28,15 @@ export class EmployeeListComponent implements OnInit {
   @ViewChild(EmployeeDetailModalComponent) // pegar uma referencia de um elemento
   employeeDetailModal: EmployeeDetailModalComponent;
 
-  @ViewChild('employeeNewModal') // pegar uma referencia de um elemento
-  employeeNewModal: EmployeeNewModalComponent;
-
   @ViewChild(EmployeeEditModalComponent) // pegar uma referencia de um elemento
   employeeEditModal: EmployeeEditModalComponent;
 
   @ViewChild(EmployeeDeleteModalComponent) // pegar uma referencia de um elemento
   employeeDeleteModal: EmployeeDeleteModalComponent;
 
-  constructor(public employeeService: EmployeeService) {
+  constructor(
+    public employeeService: EmployeeService,
+    private modalService: ModalService) {
   }
 
   ngOnInit() {
@@ -51,7 +51,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   openNewModal() {
-    this.employeeNewModal.show();
+    this.modalService.open(EmployeeNewModalComponent);
   }
 
 

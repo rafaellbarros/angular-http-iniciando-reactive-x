@@ -1,25 +1,28 @@
+<modal-title>
+  <h5>Novo empregado</h5>
+</modal-title>
 <form (submit)="addEmployee($event)">
-  <!-- (onHide)="fechou($event)" (onShow)="mostrou($event)" -->
-  <modal>
-        <h5 modal-title>Novo empregado</h5>
-        <div modal-body>
-          <div class="form-group">
-              <label>Nome:</label>
-              <input class="form-control" type="text" name="nome" [(ngModel)]="employee.name"><br>
-          </div>
-          <div class="form-group">
-              <label>Salário:</label>
-              <input class="form-control" type="text" name="salary" [(ngModel)]="employee.salary" #inputSalary><br>
-          </div>
+  <modal-body>
+    <div>
+      <div class="form-group">
+        <label>Nome:</label>
+        <input class="form-control" type="text" name="nome" [(ngModel)]="employee.name"><br>
+      </div>
+      <div class="form-group">
+        <label>Salário:</label>
+        <input class="form-control" type="text" name="salary" [(ngModel)]="employee.salary" #inputSalary><br>
+      </div>
 
-          <div class="form-group" [hidden]="employee.salary >= 1000">
-              <label>Bonus:</label>
-              <input class="form-control" type="text" name="bonus" [(ngModel)]="employee.bonus"><br>
-          </div>
-        </div>
-        <div modal-footer>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Incluir</button>
-        </div>
-  </modal>
+      <div class="form-group" [hidden]="employee.salary >= 1000">
+        <label>Bonus:</label>
+        <input class="form-control" type="text" name="bonus" [(ngModel)]="employee.bonus"><br>
+      </div>
+    </div>
+  </modal-body>
+  <modal-footer>
+    <div>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="submit" class="btn btn-primary">Incluir</button>
+    </div>
+  </modal-footer>
 </form>

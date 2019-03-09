@@ -56,7 +56,8 @@ import { TestModalDynamicComponent } from './components/modal-dynamic-components
     TestDynamicComponent,
     EmployeeListComponent,
     ModalDynamicComponent,
-    TestModalDynamicComponent
+    TestModalDynamicComponent,
+    EmployeeNewModalComponent
   ],
   imports: [
     BrowserModule,

@@ -30,6 +30,8 @@ export class ModalService {
 
     document.body.appendChild(domElement);
 
-    componentRef.instance.show();
+    setTimeout(() => {
+      componentRef.instance.show();
+    }, 100);
   }
 }
