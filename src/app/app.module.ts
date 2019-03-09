@@ -52,7 +52,8 @@ import { ModalFooterComponent } from './components/modal-dynamic-components/moda
   ],
   entryComponents: [
     TestDynamicComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    ModalDynamicComponent,
   ],
   imports: [
     BrowserModule,

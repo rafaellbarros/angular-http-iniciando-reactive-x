@@ -5,7 +5,15 @@ declare const $;
 
 @Component({
   selector: 'modal-dynamic',
-  templateUrl: './modal-dynamic.component.html',
+  template: `
+    <div class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <ng-template modalContent></ng-template>
+        </div>
+      </div>
+    </div>
+  `,
   styles: []
 })
 export class ModalDynamicComponent implements OnInit {
