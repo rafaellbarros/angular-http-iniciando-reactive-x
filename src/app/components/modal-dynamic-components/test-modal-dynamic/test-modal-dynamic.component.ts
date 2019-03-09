@@ -11,7 +11,6 @@ export class TestModalDynamicComponent implements OnInit {
   constructor(private modalRef: ModalRefService) { }
 
   ngOnInit() {
-    console.warn(this.modalRef);
     setTimeout(() => {
       this.modalRef.hide();
     }, 3000);

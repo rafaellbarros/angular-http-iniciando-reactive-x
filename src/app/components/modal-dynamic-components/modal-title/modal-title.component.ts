@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'modal-title',
@@ -10,17 +10,10 @@ import { Component, OnInit, ElementRef } from '@angular/core';
       </button>
     </div>
   `,
-  styles: []
+  styleUrls: ['./modal-title.component.scss']
 })
-export class ModalTitleComponent implements OnInit {
+export class ModalTitleComponent {
 
-  constructor(private element: ElementRef) { }
-
-  ngOnInit() {
-    const nativeElement: HTMLElement = this.element.nativeElement;
-    const firstChild = nativeElement.firstChild.firstChild;
-    (<any>firstChild).classList.add('modal-title');
-  }
 }
 // modal específico
 // <modal-title>conteudo aqui! aparecerá no ng-content</modal-title>
