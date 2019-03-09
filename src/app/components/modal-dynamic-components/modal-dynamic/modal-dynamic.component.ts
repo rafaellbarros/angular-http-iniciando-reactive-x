@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ComponentFactoryResolver, ElementRef, Injector, EventEmitter } from '@angular/core';
 import { ModalContentDirective } from '../modal-content.directive';
 import { ModalRefService } from '../modal-ref.service';
+import { ReplaySubject } from 'rxjs';
 
 declare const $;
 
@@ -19,8 +20,8 @@ declare const $;
 })
 export class ModalDynamicComponent implements OnInit {
 
-  onHide: EventEmitter<any> = new EventEmitter();
-  onShow: EventEmitter<any> = new EventEmitter();
+  onHide: ReplaySubject<any> = new ReplaySubject(1);
+  onShow: ReplaySubject<any> = new ReplaySubject(1);
 
   @ViewChild(ModalContentDirective) modalContent: ModalContentDirective;
 
@@ -34,19 +35,7 @@ export class ModalDynamicComponent implements OnInit {
     private injector: Injector) { }
 
   ngOnInit() {
-    $(this.divModal).on('hidden.bs.modal', (e) => {
-      this.onHide.emit({
-        event: e,
-        data: this.hideEventData
-      });
-    });
 
-    $(this.divModal).on('shown.bs.modal', (e) => {
-      this.onShow.emit({
-        event: e,
-        data: this.showEventData
-      });
-    });
 
   }
 
@@ -75,6 +64,7 @@ export class ModalDynamicComponent implements OnInit {
 
 
   show(eventData = null) {
+    this.registerEvents();
     this.showEventData = eventData;
     $(this.divModal).modal('show');
   }
@@ -82,6 +72,22 @@ export class ModalDynamicComponent implements OnInit {
   hide(eventData = null) {
     this.hideEventData = eventData;
     $(this.divModal).modal('hide');
+  }
+
+  private registerEvents() {
+    $(this.divModal).on('hidden.bs.modal', (e) => {
+      this.onHide.next({
+        event: e,
+        data: this.hideEventData
+      });
+    });
+
+    $(this.divModal).on('shown.bs.modal', (e) => {
+      this.onShow.next({
+        event: e,
+        data: this.showEventData
+      });
+    });
   }
 
   private get divModal(): HTMLElement {
