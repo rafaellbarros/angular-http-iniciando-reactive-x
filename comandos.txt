@@ -1,0 +1,5 @@
+# Alterando definição de estilização
+ng config schematics.@schematics/angular:component.styleext scss
+
+# Criando projeto com estilização
+ng g new project --style=scss

@@ -1,0 +1,44 @@
+<ng-container *ngTemplateOutlet="logo; context: objContext"></ng-container>
+
+<p>
+  <!-- <ng-container *ngTemplateOutlet="flagLogo? logo:logoSmall; context: objContext"></ng-container> -->
+  <ng-container *ngTemplateOutlet="logo; context: objContext"></ng-container>
+</p>
+<!--
+<p>
+  <ng-container [ngSwitch]="role">
+    <ng-container *ngSwitchCase="'admin'">
+      <ng-container *ngTemplateOutlet="headerAdmin"></ng-container>
+        < *ngSwitchCase="'admin'" componente-header-admin></>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'manager'">
+        <ng-container *ngTemplateOutlet="headerManager"></ng-container>
+      </ng-container>
+  </ng-container>
+</p>
+-->
+<employee-list></employee-list>
+<ng-container *ngTemplateOutlet="logo"></ng-container>
+
+<ng-template #logo let-nome="name" let-variavel>
+  <img class="logo-top" src="./assets/logo-top.png" alt="">
+  <p class="logo-top">{{ title }}</p>
+  <p class="logo-top">{{ nome }}</p>
+  <p class="logo-top">{{ variavel }}</p>
+  <button (click)="mudarNome()">Alterar Nome</button>
+</ng-template>
+
+<ng-template #logoSmall let-nome1="name">
+  <img class="logo-top-small" src="./assets/logo-top.png" alt="">
+  <p class="logo-top">{{ nome1 }}</p>
+</ng-template>
+
+<ng-template #headerAdmin>
+  <!--  <componente-header-admin></componente-header-admin> -->
+</ng-template>
+
+<ng-template #headerManager>
+    <!--  <componente-header-manager></componente-header-manager> -->
+</ng-template>
+
