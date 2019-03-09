@@ -19,6 +19,9 @@ import { SalaryColorDirective } from './directives/salary-color.directive';
 import { MyCurrencyPipe } from './pipes/my-currency.pipe';
 import { ModalDynamicComponent } from './components/modal-dynamic-components/modal-dynamic/modal-dynamic.component';
 import { ModalContentDirective } from './components/modal-dynamic-components/modal-content.directive';
+import { ModalTitleComponent } from './components/modal-dynamic-components/modal-title/modal-title.component';
+import { ModalBodyComponent } from './components/modal-dynamic-components/modal-body/modal-body.component';
+import { ModalFooterComponent } from './components/modal-dynamic-components/modal-footer/modal-footer.component';
 
 
 
@@ -42,7 +45,10 @@ import { ModalContentDirective } from './components/modal-dynamic-components/mod
     GetViewContainerDirective,
     TestDynamicComponent,
     ModalDynamicComponent,
-    ModalContentDirective
+    ModalContentDirective,
+    ModalTitleComponent,
+    ModalBodyComponent,
+    ModalFooterComponent
   ],
   entryComponents: [
     TestDynamicComponent,
