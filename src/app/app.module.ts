@@ -22,6 +22,7 @@ import { ModalContentDirective } from './components/modal-dynamic-components/mod
 import { ModalTitleComponent } from './components/modal-dynamic-components/modal-title/modal-title.component';
 import { ModalBodyComponent } from './components/modal-dynamic-components/modal-body/modal-body.component';
 import { ModalFooterComponent } from './components/modal-dynamic-components/modal-footer/modal-footer.component';
+import { TestModalDynamicComponent } from './components/modal-dynamic-components/test-modal-dynamic/test-modal-dynamic.component';
 
 
 
@@ -48,12 +49,14 @@ import { ModalFooterComponent } from './components/modal-dynamic-components/moda
     ModalContentDirective,
     ModalTitleComponent,
     ModalBodyComponent,
-    ModalFooterComponent
+    ModalFooterComponent,
+    TestModalDynamicComponent
   ],
   entryComponents: [
     TestDynamicComponent,
     EmployeeListComponent,
     ModalDynamicComponent,
+    TestModalDynamicComponent
   ],
   imports: [
     BrowserModule,

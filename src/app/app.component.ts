@@ -3,6 +3,7 @@ import { EmployeeListComponent } from './components/employee/employee-list/emplo
 import { ModalService } from './components/modal-dynamic-components/modal.service';
 import { TestDynamicComponent } from './components/test-dynamic-component/test-dynamic.component';
 import { GetViewContainerDirective } from './directives/get-view-container.directive';
+import { TestModalDynamicComponent } from './components/modal-dynamic-components/test-modal-dynamic/test-modal-dynamic.component';
 
 
 @Component({
@@ -43,7 +44,7 @@ export class AppComponent implements OnInit {
       this.getViewContainer.viewContainerRef.createComponent(componentFactory);
     }, 4000);
 
-    this.modalService.open('');
+    this.modalService.open(TestModalDynamicComponent);
   }
 /*
   ngAfterViewInit() {

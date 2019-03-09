@@ -22,10 +22,14 @@ export class ModalService {
       .resolveComponentFactory(ModalDynamicComponent)
       .create(this.injector);
 
-      this.appRef.attachView(componentRef.hostView);
+    componentRef.instance.mount(modalImplementedComponent);
+
+    this.appRef.attachView(componentRef.hostView);
 
     const domElement = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
 
     document.body.appendChild(domElement);
+
+    componentRef.instance.show();
   }
 }
