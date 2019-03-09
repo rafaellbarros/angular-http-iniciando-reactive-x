@@ -52,9 +52,11 @@ export class EmployeeListComponent implements OnInit {
 
   openNewModal() {
     const modalRef = this.modalService.create(EmployeeNewModalComponent);
+    modalRef.onHide.subscribe((event) => {
+      console.warn(event);
+    });
     modalRef.show();
   }
-
 
   openEditModal(employee: Employee) {
     this.employeeToEdit = employee;
@@ -84,14 +86,6 @@ export class EmployeeListComponent implements OnInit {
 
   getSalaryColor(e) {
     return e.salary > 2000 ? 'green' : null;
-  }
-
-  fechou(event) {
-    console.log('fechou ', event);
-  }
-
-  mostrou(event) {
-    console.log('mostrou ', event);
   }
 
 }

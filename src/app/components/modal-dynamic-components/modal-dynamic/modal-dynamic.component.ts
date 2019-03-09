@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver, ElementRef, Injector } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver, ElementRef, Injector, EventEmitter } from '@angular/core';
 import { ModalContentDirective } from '../modal-content.directive';
 import { ModalRefService } from '../modal-ref.service';
 
@@ -19,9 +19,14 @@ declare const $;
 })
 export class ModalDynamicComponent implements OnInit {
 
+  onHide: EventEmitter<any> = new EventEmitter();
+  onShow: EventEmitter<any> = new EventEmitter();
+
   @ViewChild(ModalContentDirective) modalContent: ModalContentDirective;
 
   modalRef: ModalRefService;
+  showEventData = null;
+  hideEventData = null;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -29,6 +34,20 @@ export class ModalDynamicComponent implements OnInit {
     private injector: Injector) { }
 
   ngOnInit() {
+    $(this.divModal).on('hidden.bs.modal', (e) => {
+      this.onHide.emit({
+        event: e,
+        data: this.hideEventData
+      });
+    });
+
+    $(this.divModal).on('shown.bs.modal', (e) => {
+      this.onShow.emit({
+        event: e,
+        data: this.showEventData
+      });
+    });
+
   }
 
   mount(modalImplementedComponent): ModalRefService {
@@ -55,11 +74,13 @@ export class ModalDynamicComponent implements OnInit {
   }
 
 
-  show() {
+  show(eventData = null) {
+    this.showEventData = eventData;
     $(this.divModal).modal('show');
   }
 
-  hide() {
+  hide(eventData = null) {
+    this.hideEventData = eventData;
     $(this.divModal).modal('hide');
   }
 

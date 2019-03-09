@@ -3,6 +3,7 @@ import { Employee } from 'src/app/models/employees';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Modalable } from '../../modal';
 import { InputDirective } from '../../../directives/input.directive';
+import { ModalRefService } from '../../modal-dynamic-components/modal-ref.service';
 
 declare const $;
 
@@ -11,7 +12,7 @@ declare const $;
   templateUrl: './employee-new-modal.component.html',
   styleUrls: ['./employee-new-modal.component.css']
 })
-export class EmployeeNewModalComponent extends Modalable implements OnInit, AfterViewInit {
+export class EmployeeNewModalComponent  implements OnInit, AfterViewInit {
 
   employee: Employee = {
     name: '',
@@ -28,16 +29,15 @@ export class EmployeeNewModalComponent extends Modalable implements OnInit, Afte
   @ViewChildren(InputDirective)
   inputs;
 
-  @Output()
-  onSubmit: EventEmitter<Employee> = new EventEmitter<Employee>();
 
-  constructor(private employeeService: EmployeeService) {
-    super();
+  constructor(
+    private employeeService: EmployeeService,
+    private modalRef: ModalRefService) {
   }
 
   ngOnInit() {
-    super.ngOnInit();
-    this.onShow.subscribe(() => {
+
+    this.modalRef.onShow.subscribe(() => {
       console.log('inputName > ', this.inputName);
       this.inputName.focus();
     })
@@ -51,8 +51,7 @@ export class EmployeeNewModalComponent extends Modalable implements OnInit, Afte
     // const copy = Object.assign({}, this.employee);
     const employee = {name: this.employee.name, salary: this.employee.salary, bonus: this.employee.bonus};
     this.employeeService.addEmployee(employee);
-    this.onSubmit.emit(employee);
-    this.hide();
+    this.modalRef.hide({employee: employee , submitted: true});
   }
 
   /*
