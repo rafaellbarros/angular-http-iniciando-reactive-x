@@ -17,6 +17,8 @@ import { ModalComponent } from './components/modal/modal.component';
 import { NgContentTesteComponent } from './components/ng-content-teste/ng-content-teste.component';
 import { EmployeeDetailModalComponent } from './components/employee/employee-detail-modal/employee-detail-modal.component';
 import { InputDirective } from './directives/input.directive';
+import { GetViewContainerDirective } from './directives/get-view-container.directive';
+import { TestDynamicComponentComponent } from './components/test-dynamic-component/test-dynamic-component.component';
 
 
 @NgModule({
@@ -34,7 +36,12 @@ import { InputDirective } from './directives/input.directive';
     ModalComponent,
     NgContentTesteComponent,
     EmployeeDetailModalComponent,
-    InputDirective
+    InputDirective,
+    GetViewContainerDirective,
+    TestDynamicComponentComponent
+  ],
+  entryComponents: [
+    TestDynamicComponentComponent
   ],
   imports: [
     BrowserModule,
