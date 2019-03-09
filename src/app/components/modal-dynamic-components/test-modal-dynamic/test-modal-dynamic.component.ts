@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalRefService } from '../modal-ref.service';
 
 @Component({
   selector: 'app-test-modal-dynamic',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestModalDynamicComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalRef: ModalRefService) { }
 
   ngOnInit() {
+    console.warn(this.modalRef);
+    setTimeout(() => {
+      this.modalRef.hide();
+    }, 3000);
   }
 
 }
