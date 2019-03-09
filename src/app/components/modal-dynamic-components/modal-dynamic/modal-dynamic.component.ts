@@ -21,6 +21,8 @@ export class ModalDynamicComponent implements OnInit {
 
   @ViewChild(ModalContentDirective) modalContent: ModalContentDirective;
 
+  modalRef: ModalRefService;
+
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private element: ElementRef,
@@ -29,11 +31,12 @@ export class ModalDynamicComponent implements OnInit {
   ngOnInit() {
   }
 
-  mount(modalImplementedComponent) {
+  mount(modalImplementedComponent): ModalRefService {
     const componentFactory = this.componentFactoryResolver
     .resolveComponentFactory(modalImplementedComponent);
     const viewContainerRef = this.modalContent.viewContainerRef;
     viewContainerRef.createComponent(componentFactory, null, this.makeLocalInjector());
+    return this.modalRef;
   }
 
   private makeLocalInjector() {
@@ -46,9 +49,9 @@ export class ModalDynamicComponent implements OnInit {
   }
 
   private makeModalRef() {
-    const modalRef = new ModalRefService();
-    modalRef.instance = this;
-    return modalRef;
+    this.modalRef = new ModalRefService();
+    this.modalRef.instance = this;
+    return this.modalRef;
   }
 
 

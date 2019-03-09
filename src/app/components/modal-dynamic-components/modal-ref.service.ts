@@ -8,7 +8,12 @@ export class ModalRefService {
 
   constructor() { }
 
+  show() {
+    this.instance.show();
+  }
+
   hide() {
     this.instance.hide();
   }
+
 }

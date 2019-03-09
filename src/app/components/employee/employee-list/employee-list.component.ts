@@ -51,7 +51,8 @@ export class EmployeeListComponent implements OnInit {
   }
 
   openNewModal() {
-    this.modalService.open(EmployeeNewModalComponent);
+    const modalRef = this.modalService.create(EmployeeNewModalComponent);
+    modalRef.show();
   }
 
 

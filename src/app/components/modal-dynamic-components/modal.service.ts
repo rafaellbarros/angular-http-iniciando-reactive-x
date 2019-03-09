@@ -6,23 +6,26 @@ import {
   EmbeddedViewRef } from '@angular/core';
 
 import { ModalDynamicComponent } from './modal-dynamic/modal-dynamic.component';
+import { ModalRefService } from './modal-ref.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalService {
 
+  modalRef: ModalRefService;
+
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector,
     private appRef: ApplicationRef) { }
 
-  open(modalImplementedComponent) {
+  create(modalImplementedComponent): ModalRefService {
     const componentRef = this.componentFactoryResolver
-      .resolveComponentFactory(ModalDynamicComponent)
-      .create(this.injector);
+    .resolveComponentFactory(ModalDynamicComponent)
+    .create(this.injector);
 
-    componentRef.instance.mount(modalImplementedComponent);
+    this.modalRef = componentRef.instance.mount(modalImplementedComponent);
 
     this.appRef.attachView(componentRef.hostView);
 
@@ -30,8 +33,11 @@ export class ModalService {
 
     document.body.appendChild(domElement);
 
-    setTimeout(() => {
-      componentRef.instance.show();
-    }, 100);
+    return this.modalRef;
+
+  }
+
+  open(modalImplementedComponent) {
+    this.modalRef.show();
   }
 }
