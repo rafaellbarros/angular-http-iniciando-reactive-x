@@ -1,25 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, AfterViewInit, TemplateRef } from '@angular/core';
+import { template } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'app';
-  flagLogo = true;
-  objContext = {
-    $implicit: 'valor',
-    name: 'Rafael Barros'
-  };
+
+  @ViewChild('employeeList', {read: ViewContainerRef})
+  viewContainer: ViewContainerRef;
+
+  @ViewChild('template')
+  template: TemplateRef<any>;
 
   ngOnInit() {
-    setTimeout(() => {
-      this.flagLogo = false;
-    }, 5000);
+
   }
 
-  mudarNome() {
-    this.objContext.name = 'XPTO';
+  ngAfterViewInit() {
+    console.log(this.viewContainer);
+    this.viewContainer.createEmbeddedView(this.template);
+    this.viewContainer.clear();
   }
+
 }
