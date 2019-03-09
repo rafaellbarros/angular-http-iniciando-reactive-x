@@ -26,6 +26,8 @@ export class ModalService {
     .create(this.injector);
 
     this.modalRef = componentRef.instance.mount(modalImplementedComponent, context);
+    this.modalRef.appRef = this.appRef;
+    this.modalRef.componentRef = componentRef;
 
     this.appRef.attachView(componentRef.hostView);
 

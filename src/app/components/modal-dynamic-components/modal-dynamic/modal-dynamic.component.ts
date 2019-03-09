@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver, ElementRef, Injector, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver, ElementRef, Injector, EventEmitter, OnDestroy } from '@angular/core';
 import { ModalContentDirective } from '../modal-content.directive';
 import { ModalRefService } from '../modal-ref.service';
 import { ReplaySubject } from 'rxjs';
@@ -18,7 +18,7 @@ declare const $;
   `,
   styles: []
 })
-export class ModalDynamicComponent implements OnInit {
+export class ModalDynamicComponent implements OnInit, OnDestroy {
 
   onHide: ReplaySubject<any> = new ReplaySubject(1);
   onShow: ReplaySubject<any> = new ReplaySubject(1);
@@ -78,6 +78,10 @@ export class ModalDynamicComponent implements OnInit {
     $(this.divModal).modal('hide');
   }
 
+  dispose() {
+    $(this.divModal).modal('dispose');
+  }
+
   private registerEvents() {
     $(this.divModal).on('hidden.bs.modal', (e) => {
       this.onHide.next({
@@ -97,6 +101,10 @@ export class ModalDynamicComponent implements OnInit {
   private get divModal(): HTMLElement {
     const nativeElement: HTMLElement = this.element.nativeElement;
     return nativeElement.firstChild as HTMLElement;
+  }
+
+  ngOnDestroy(): void {
+    console.log('modal dynamic component destruído');
   }
 
 }

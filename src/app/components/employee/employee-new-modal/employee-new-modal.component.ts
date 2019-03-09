@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, ViewChildren, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, ViewChildren, AfterViewInit, OnDestroy } from '@angular/core';
 import { Employee } from 'src/app/models/employees';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Modalable } from '../../modal';
@@ -12,7 +12,7 @@ declare const $;
   templateUrl: './employee-new-modal.component.html',
   styleUrls: ['./employee-new-modal.component.css']
 })
-export class EmployeeNewModalComponent  implements OnInit, AfterViewInit {
+export class EmployeeNewModalComponent  implements OnInit, AfterViewInit, OnDestroy {
 
   employee: Employee = {
     name: '',
@@ -54,13 +54,7 @@ export class EmployeeNewModalComponent  implements OnInit, AfterViewInit {
     this.modalRef.hide({employee: employee , submitted: true});
   }
 
-  /*
-  fechou(event) {
-    console.log('fechou ', event);
+  ngOnDestroy(): void {
+    console.log('employee new modal foi destruído');
   }
-
-  mostrou(event) {
-    console.log('mostrou ', event);
-  }
-  */
 }

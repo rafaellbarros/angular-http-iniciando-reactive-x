@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    /*
     setInterval(() => {
       this.getViewContainer.viewContainerRef.clear();
       this.indexComponents++;
@@ -46,6 +47,7 @@ export class AppComponent implements OnInit {
 
     const modalRef = this.modalService.create(TestModalDynamicComponent);
     // modalRef.show();
+    */
   }
 /*
   ngAfterViewInit() {
