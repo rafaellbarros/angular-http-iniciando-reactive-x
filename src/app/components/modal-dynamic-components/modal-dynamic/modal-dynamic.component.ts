@@ -29,6 +29,8 @@ export class ModalDynamicComponent implements OnInit {
   showEventData = null;
   hideEventData = null;
 
+  contextModal;
+
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private element: ElementRef,
@@ -39,7 +41,8 @@ export class ModalDynamicComponent implements OnInit {
 
   }
 
-  mount(modalImplementedComponent): ModalRefService {
+  mount(modalImplementedComponent, context = {}): ModalRefService {
+    this.contextModal = context;
     const componentFactory = this.componentFactoryResolver
     .resolveComponentFactory(modalImplementedComponent);
     const viewContainerRef = this.modalContent.viewContainerRef;
@@ -59,6 +62,7 @@ export class ModalDynamicComponent implements OnInit {
   private makeModalRef() {
     this.modalRef = new ModalRefService();
     this.modalRef.instance = this;
+    this.modalRef.context = this.contextModal;
     return this.modalRef;
   }
 

@@ -20,12 +20,12 @@ export class ModalService {
     private injector: Injector,
     private appRef: ApplicationRef) { }
 
-  create(modalImplementedComponent): ModalRefService {
+  create(modalImplementedComponent, context = {}): ModalRefService {
     const componentRef = this.componentFactoryResolver
     .resolveComponentFactory(ModalDynamicComponent)
     .create(this.injector);
 
-    this.modalRef = componentRef.instance.mount(modalImplementedComponent);
+    this.modalRef = componentRef.instance.mount(modalImplementedComponent, context);
 
     this.appRef.attachView(componentRef.hostView);
 

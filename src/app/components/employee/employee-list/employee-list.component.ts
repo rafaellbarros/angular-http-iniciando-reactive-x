@@ -17,7 +17,6 @@ import { ModalService } from '../../modal-dynamic-components/modal.service';
 export class EmployeeListComponent implements OnInit {
 
   employee: Employee;
-  employeeToEdit: Employee;
   employeeToDelete: Employee;
   employeeToDetail: Employee;
   data = new Date();
@@ -27,9 +26,6 @@ export class EmployeeListComponent implements OnInit {
 
   @ViewChild(EmployeeDetailModalComponent) // pegar uma referencia de um elemento
   employeeDetailModal: EmployeeDetailModalComponent;
-
-  @ViewChild(EmployeeEditModalComponent) // pegar uma referencia de um elemento
-  employeeEditModal: EmployeeEditModalComponent;
 
   @ViewChild(EmployeeDeleteModalComponent) // pegar uma referencia de um elemento
   employeeDeleteModal: EmployeeDeleteModalComponent;
@@ -59,8 +55,13 @@ export class EmployeeListComponent implements OnInit {
   }
 
   openEditModal(employee: Employee) {
-    this.employeeToEdit = employee;
-    this.employeeEditModal.show();
+    const modalRef = this.modalService.create(EmployeeEditModalComponent, {
+      employee
+    });
+    modalRef.onHide.subscribe((event) => {
+      console.warn(event);
+    });
+    modalRef.show();
   }
 
   openDestroyModal(employee: Employee) {

@@ -15,8 +15,7 @@ export class EmployeeNewComponent implements OnInit {
     name: '',
     salary: 0,
     bonus: 0,
-  }
-
+  };
 
   constructor(private employeeService: EmployeeService) { }
 

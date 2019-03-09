@@ -6,6 +6,8 @@ export class ModalRefService {
 
   instance: ModalDynamicComponent;
 
+  context: any;
+
   constructor() { }
 
   show = (eventData = null) => this.instance.show(eventData);

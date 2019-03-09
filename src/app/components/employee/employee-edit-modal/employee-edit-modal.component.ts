@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, Output, EventEmitter, Input } from '@angular/core';
 import { Employee } from 'src/app/models/employees';
+import { ModalRefService } from '../../modal-dynamic-components/modal-ref.service';
 
 declare const $;
 
@@ -10,37 +11,22 @@ declare const $;
 })
 export class EmployeeEditModalComponent implements OnInit {
 
-  @Input()
   employee: Employee;
 
   @Output()
   onSubmit: EventEmitter<Employee> = new EventEmitter<Employee>();
 
-  constructor(private element: ElementRef) { }
+  constructor(private modalRef: ModalRefService) {
+    this.employee = this.modalRef.context['employee'];
+  }
 
   ngOnInit() {
   }
 
-  addEmployee(event) {
-    // const copy = Object.assign({}, this.employee);
+  editEmployee(event) {
     const employee = {name: this.employee.name, salary: this.employee.salary, bonus: this.employee.bonus};
     this.onSubmit.emit(employee);
-    this.hide();
-  }
-
-  show() {
-    const divModal = this.getDivModal();
-    $(divModal).modal('show');
-  }
-
-  hide() {
-    const divModal = this.getDivModal();
-    $(divModal).modal('hide');
-  }
-
-  private getDivModal(): HTMLElement {
-    const nativeElement: HTMLElement = this.element.nativeElement;
-    return nativeElement.firstChild.firstChild as HTMLElement;
+    this.modalRef.hide({ employee, submitted: true });
   }
 
 }
