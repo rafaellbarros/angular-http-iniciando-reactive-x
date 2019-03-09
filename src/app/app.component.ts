@@ -9,7 +9,7 @@ import { TestDynamicComponent } from './components/test-dynamic-component/test-d
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   title = 'app';
 
   @ViewChild('employeeList', {read: ViewContainerRef})
@@ -29,16 +29,23 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
+    setInterval(() => {
+      this.getViewContainer.viewContainerRef.clear();
+      this.indexComponents++;
+      if  (this.indexComponents === this.components.length) {
+        this.indexComponents = 0;
+      }
+      const componentFactory = this.componentFactoryResolver
+        .resolveComponentFactory(this.components[this.indexComponents]);
+      this.getViewContainer.viewContainerRef.createComponent(componentFactory);
+    }, 4000);
   }
-
+/*
   ngAfterViewInit() {
     // createEmbeddedView
     // console.log(this.viewContainer);
     // this.viewContainer.createEmbeddedView(this.template);
     // this.viewContainer.clear();
-
-
     setInterval(() => {
       this.getViewContainer.viewContainerRef.clear();
       this.indexComponents++;
@@ -50,7 +57,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.getViewContainer.viewContainerRef.createComponent(componentFactory);
     }, 4000);
 
-
   }
-
+*/
 }
