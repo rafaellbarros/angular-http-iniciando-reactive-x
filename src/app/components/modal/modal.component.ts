@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, Output, EventEmitter } from '@angular/core';
 
 declare const $;
-
+// Service - abrir a modal - modal generico e modal especifico
 @Component({
   selector: 'modal',
   templateUrl: './modal.component.html',

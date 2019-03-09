@@ -17,6 +17,8 @@ import { GetViewContainerDirective } from './directives/get-view-container.direc
 import { InputDirective } from './directives/input.directive';
 import { SalaryColorDirective } from './directives/salary-color.directive';
 import { MyCurrencyPipe } from './pipes/my-currency.pipe';
+import { ModalDynamicComponent } from './components/modal-dynamic-components/modal-dynamic/modal-dynamic.component';
+import { ModalContentDirective } from './components/modal-dynamic-components/modal-content.directive';
 
 
 
@@ -38,7 +40,9 @@ import { MyCurrencyPipe } from './pipes/my-currency.pipe';
     EmployeeDetailModalComponent,
     InputDirective,
     GetViewContainerDirective,
-    TestDynamicComponent
+    TestDynamicComponent,
+    ModalDynamicComponent,
+    ModalContentDirective
   ],
   entryComponents: [
     TestDynamicComponent,
