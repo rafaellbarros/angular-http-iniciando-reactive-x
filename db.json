@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Fulano da Silva",
-      "salary": 1000,
+      "salary": "100000",
       "bonus": 0
     },
     {
@@ -53,6 +53,12 @@
       "salary": 0,
       "bonus": 0,
       "id": 9
+    },
+    {
+      "id": 10,
+      "name": "11111111111",
+      "salary": "400",
+      "bonus": "50000"
     }
   ]
 }

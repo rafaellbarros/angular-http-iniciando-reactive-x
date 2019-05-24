@@ -1,36 +1,39 @@
 import { Component, OnInit, ElementRef, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { Employee } from 'src/app/models/employees';
 import { ModalRefService } from '../../modal-dynamic-components/modal-ref.service';
-
-declare const $;
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'employee-edit-modal',
   templateUrl: './employee-edit-modal.component.html',
   styleUrls: ['./employee-edit-modal.component.css']
 })
-export class EmployeeEditModalComponent implements OnInit, OnDestroy {
+export class EmployeeEditModalComponent implements OnInit {
 
-  employee: Employee;
+  employeeId: number;
+  employee: Employee = {
+    name: '',
+    salary: 1,
+    bonus: 0
+  };
 
-  @Output()
-  onSubmit: EventEmitter<Employee> = new EventEmitter<Employee>();
-
-  constructor(private modalRef: ModalRefService) {
-    this.employee = this.modalRef.context['employee'];
+  constructor(private employeeService: EmployeeService, private modalRef: ModalRefService) {
+    this.employeeId = this.modalRef.context['employeeId'];
   }
 
   ngOnInit() {
+    this.carregaDadosEmployee();
   }
 
   editEmployee(event) {
-    const employee = {name: this.employee.name, salary: this.employee.salary, bonus: this.employee.bonus};
-    this.onSubmit.emit(employee);
-    this.modalRef.hide({ employee, submitted: true });
+    this.employeeService.editEmployee(this.employee).subscribe(resp => {
+      this.modalRef.hide({ employee: resp, submitted: true });
+    });
   }
 
-  ngOnDestroy(): void {
-    console.log('employee edit modal foi destruído');
+  carregaDadosEmployee() {
+    this.employeeService.getEmployeeById(this.employeeId).subscribe(resp => {
+      this.employee = resp;
+    });
   }
-
 }

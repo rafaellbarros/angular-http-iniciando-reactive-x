@@ -11,16 +11,15 @@ declare const $;
   templateUrl: './employee-new-modal.component.html',
   styleUrls: ['./employee-new-modal.component.css']
 })
-export class EmployeeNewModalComponent  implements OnInit, AfterViewInit, OnDestroy {
+export class EmployeeNewModalComponent  implements OnInit, OnDestroy {
 
   employee: Employee = {
+    id: 0,
     name: '',
     salary:  0,
     bonus: 0,
   };
 
-  // @ViewChild(InputDirective)
-  // inputName: InputDirective;
 
   @ViewChild('inputSalary', { read: InputDirective })
   inputName: InputDirective;
@@ -42,16 +41,10 @@ export class EmployeeNewModalComponent  implements OnInit, AfterViewInit, OnDest
     });
   }
 
-  ngAfterViewInit(): void {
-    console.log('ngAfterViewInit: ', this.inputs);
-  }
 
   addEmployee(event) {
-    // const copy = Object.assign({}, this.employee);
-    const employee = {name: this.employee.name, salary: this.employee.salary, bonus: this.employee.bonus};
-    // this.employeeService.addEmployee(employee);
-    this.employeeService.createEmployee(employee).subscribe(resp => {
-      this.modalRef.hide({employee: employee , submitted: true});
+    this.employeeService.createEmployee(this.employee).subscribe(resp => {
+      this.modalRef.hide({employee: resp , submitted: true});
     });
   }
 

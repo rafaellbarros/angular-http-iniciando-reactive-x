@@ -9,7 +9,6 @@ import { EmployeeDetailModalComponent } from './components/employee/employee-det
 import { EmployeeEditModalComponent } from './components/employee/employee-edit-modal/employee-edit-modal.component';
 import { EmployeeListComponent } from './components/employee/employee-list/employee-list.component';
 import { EmployeeNewModalComponent } from './components/employee/employee-new-modal/employee-new-modal.component';
-import { EmployeeNewComponent } from './components/employee/employee-new/employee-new.component';
 import { GetViewContainerDirective } from './directives/get-view-container.directive';
 import { InputDirective } from './directives/input.directive';
 import { SalaryColorDirective } from './directives/salary-color.directive';
@@ -25,7 +24,6 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     EmployeeListComponent,
-    EmployeeNewComponent,
     SalaryColorDirective,
     EmployeeNewModalComponent,
     EmployeeEditModalComponent,

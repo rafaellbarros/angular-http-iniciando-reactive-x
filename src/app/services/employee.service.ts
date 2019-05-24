@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import employees, { Employee } from '../models/employees';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { Employee } from '../models/employees';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +13,12 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  getEmployess() {
+  getEmployees() {
     return this.http.get<Employee[]>(this.employeesUrl);
+  }
+
+  getEmployeeById(id: number) {
+    return this.http.get<Employee>(`${this.employeesUrl}/${id}`);
   }
 
   createEmployee(employee: Employee) {
@@ -24,9 +26,12 @@ export class EmployeeService {
     return this.http.post(this.employeesUrl, employee);
   }
 
+  editEmployee(employee: Employee) {
+    return this.http.put(`${this.employeesUrl}/${employee.id}`, employee);
+  }
+
   addEmployee(employee: Employee) {
     employee.bonus = employee.salary >= 1000 ? 0 : employee.bonus;
-
   }
 
   destroyEmployee(employee: Employee) {

@@ -29,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getEmployess();
+    this.getEmployees();
   }
 
   openDetailModal(employee: Employee) {
@@ -54,7 +54,7 @@ export class EmployeeListComponent implements OnInit {
 
   openEditModal(employee: Employee) {
     const modalRef = this.modalService.create(EmployeeEditModalComponent, {
-      employee
+      employeeId: employee.id
     });
     modalRef.onHide.subscribe((event) => {
       const eventData = event.data;
@@ -81,7 +81,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   showSuccessMessage(message) {
-    this.getEmployess();
+    this.getEmployees();
 
     this.successMessage.message = message;
     this.successMessage.show = true;
@@ -91,8 +91,8 @@ export class EmployeeListComponent implements OnInit {
 
   }
 
-  getEmployess() {
-    this.employeeService.getEmployess().subscribe(resp => {
+  getEmployees() {
+    this.employeeService.getEmployees().subscribe(resp => {
       this.employees = resp;
     });
   }
