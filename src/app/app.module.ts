@@ -11,8 +11,6 @@ import { EmployeeListComponent } from './components/employee/employee-list/emplo
 import { EmployeeNewModalComponent } from './components/employee/employee-new-modal/employee-new-modal.component';
 import { EmployeeNewComponent } from './components/employee/employee-new/employee-new.component';
 import { ModalComponent } from './components/modal/modal.component';
-import { NgContentTesteComponent } from './components/ng-content-teste/ng-content-teste.component';
-import { TestDynamicComponent } from './components/test-dynamic-component/test-dynamic.component';
 import { GetViewContainerDirective } from './directives/get-view-container.directive';
 import { InputDirective } from './directives/input.directive';
 import { SalaryColorDirective } from './directives/salary-color.directive';
@@ -22,9 +20,6 @@ import { ModalContentDirective } from './components/modal-dynamic-components/mod
 import { ModalTitleComponent } from './components/modal-dynamic-components/modal-title/modal-title.component';
 import { ModalBodyComponent } from './components/modal-dynamic-components/modal-body/modal-body.component';
 import { ModalFooterComponent } from './components/modal-dynamic-components/modal-footer/modal-footer.component';
-import { TestModalDynamicComponent } from './components/modal-dynamic-components/test-modal-dynamic/test-modal-dynamic.component';
-
-
 
 
 @NgModule({
@@ -40,23 +35,18 @@ import { TestModalDynamicComponent } from './components/modal-dynamic-components
     MyCurrencyPipe,
     ComponenteInlineComponent,
     ModalComponent,
-    NgContentTesteComponent,
     EmployeeDetailModalComponent,
     InputDirective,
     GetViewContainerDirective,
-    TestDynamicComponent,
     ModalDynamicComponent,
     ModalContentDirective,
     ModalTitleComponent,
     ModalBodyComponent,
     ModalFooterComponent,
-    TestModalDynamicComponent
   ],
   entryComponents: [
-    TestDynamicComponent,
     EmployeeListComponent,
     ModalDynamicComponent,
-    TestModalDynamicComponent,
     EmployeeNewModalComponent,
     EmployeeEditModalComponent
   ],

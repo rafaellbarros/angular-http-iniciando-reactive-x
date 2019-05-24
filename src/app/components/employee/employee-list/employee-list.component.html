@@ -1,11 +1,8 @@
 <div class="container">
   <alert-success [hidden]="!showMessageSuccess">O empregado <strong>{{ employee?.name }}</strong> foi cadastrado com
     sucesso!</alert-success>
-    <ng-container *ngIf="isLoanding" >
-      <ng-container *ngTemplateOutlet="loading"></ng-container>
-    </ng-container>
   <div class="row">
-    <h1>Nossos empregados - {{ data | date: 'dd/MM/yyyy' }}</h1>
+    <h1>Nossos empregados</h1>
     <p salaryColor="valor"></p>
     <table class="table table-striped">
       <thead>
@@ -18,60 +15,22 @@
           <th>Nome</th>
           <th>Salário</th>
           <th>Bonus</th>
-          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
-        <!-- ngcontainer vs ngtemplate -->
-        <!-- attributes, estruturais -->
-        <ng-container *ngFor="let e of employeeService.employees; let i = index">
-          <tr [id]="'tr' + i">
+          <tr *ngFor="let e of employeeService.employees">
 
             <td><a href="javascript:void(0)" (click)="openDetailModal(e)">{{e.name}}</a></td>
-            <td [innerHtml]="e.salary | myCurrency" [salaryColor]="e.salary"></td>
-            <!--<td
-                [innerHtml]="e.salary"
-                [ngClass]="{
-                  'salary-expensive': e.salary > 2000,
-                  'salary-cheap': e.salary < 2000
-                }"
-              ></td>-->
-            <td [innerHtml]="e.bonus"></td>
+            <td [innerHTML]="e.salary | myCurrency" [salaryColor]="e.salary"></td>
+
+            <td [innerHTML]="e.bonus"></td>
             <td>
               <a href="javascript:void(0)" (click)="openEditModal(e)">Editar</a> |
               <a href="javascript:void(0)" (click)="openDestroyModal(e)">Excluir</a>
             </td>
 
           </tr>
-        </ng-container>
       </tbody>
     </table>
   </div>
-
 </div>
-<employee-detail-modal [employee]="employeeToDetail"></employee-detail-modal>
-<employee-delete-modal [employee]="employeeToDelete" (onDestroy)="onDestroyEmployee($event)"></employee-delete-modal>
-
-<template id="template">
-  Qualquer coisa
-</template>
-<!--
-  template = docuement.querySelector('#template')
-  elem.appendChild(template.content.cloneNode(true))
--->
-<!--
-<ng-template #myTemplate>
-  <p>Meu Template</p>
-  <ng-container>
-      <p>Meu Container</p>
-  </ng-container>
-</ng-template>
-
-<ng-container>
-    <p>Meu Container</p>
-</ng-container>
--->
-
-<ng-template #loading>
-  Carregando...
-</ng-template>
