@@ -10,7 +10,6 @@ import { EmployeeEditModalComponent } from './components/employee/employee-edit-
 import { EmployeeListComponent } from './components/employee/employee-list/employee-list.component';
 import { EmployeeNewModalComponent } from './components/employee/employee-new-modal/employee-new-modal.component';
 import { EmployeeNewComponent } from './components/employee/employee-new/employee-new.component';
-import { ModalComponent } from './components/modal/modal.component';
 import { GetViewContainerDirective } from './directives/get-view-container.directive';
 import { InputDirective } from './directives/input.directive';
 import { SalaryColorDirective } from './directives/salary-color.directive';
@@ -34,7 +33,6 @@ import { ModalFooterComponent } from './components/modal-dynamic-components/moda
     AlertSuccessComponent,
     MyCurrencyPipe,
     ComponenteInlineComponent,
-    ModalComponent,
     EmployeeDetailModalComponent,
     InputDirective,
     GetViewContainerDirective,
@@ -48,7 +46,9 @@ import { ModalFooterComponent } from './components/modal-dynamic-components/moda
     EmployeeListComponent,
     ModalDynamicComponent,
     EmployeeNewModalComponent,
-    EmployeeEditModalComponent
+    EmployeeEditModalComponent,
+    EmployeeDeleteModalComponent,
+    EmployeeDetailModalComponent,
   ],
   imports: [
     BrowserModule,

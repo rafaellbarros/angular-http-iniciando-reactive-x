@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, ViewChildren, AfterViewInit, OnDestroy } from '@angular/core';
 import { Employee } from 'src/app/models/employees';
 import { EmployeeService } from 'src/app/services/employee.service';
-import { Modalable } from '../../modal';
 import { InputDirective } from '../../../directives/input.directive';
 import { ModalRefService } from '../../modal-dynamic-components/modal-ref.service';
 
@@ -40,7 +39,7 @@ export class EmployeeNewModalComponent  implements OnInit, AfterViewInit, OnDest
     this.modalRef.onShow.subscribe(() => {
       console.log('inputName > ', this.inputName);
       this.inputName.focus();
-    })
+    });
   }
 
   ngAfterViewInit(): void {

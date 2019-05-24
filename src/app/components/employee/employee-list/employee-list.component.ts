@@ -1,3 +1,5 @@
+import { EmployeeDetailModalComponent } from './../employee-detail-modal/employee-detail-modal.component';
+import { EmployeeDeleteModalComponent } from './../employee-delete-modal/employee-delete-modal.component';
 import { Component, OnInit } from '@angular/core';
 
 import { Employee } from 'src/app/models/employees';
@@ -15,10 +17,10 @@ import { ModalService } from '../../modal-dynamic-components/modal.service';
 export class EmployeeListComponent implements OnInit {
 
   employee: Employee;
-  employeeToDelete: Employee;
-  employeeToDetail: Employee;
-
-  showMessageSuccess = false;
+  successMessage = {
+    message: '',
+    show: false
+  };
 
   constructor(
     public employeeService: EmployeeService,
@@ -30,13 +32,21 @@ export class EmployeeListComponent implements OnInit {
   }
 
   openDetailModal(employee: Employee) {
-    this.employeeToDetail = employee;
+    const modalRef = this.modalService.create(EmployeeDetailModalComponent, {
+      employee
+    });
+    modalRef.show();
   }
 
   openNewModal() {
     const modalRef = this.modalService.create(EmployeeNewModalComponent);
     modalRef.onHide.subscribe((event) => {
-      console.warn(event);
+      const eventData = event.data;
+      if (eventData && eventData.hasOwnProperty('employee')) {
+        const { employee } = eventData;
+        const message = `O empgregado <strong>${employee.name}</strong> foi criado com sucesso!`;
+        this.showSuccessMessage(message);
+      }
     });
     modalRef.show();
   }
@@ -46,17 +56,34 @@ export class EmployeeListComponent implements OnInit {
       employee
     });
     modalRef.onHide.subscribe((event) => {
-      console.warn(event);
+      const eventData = event.data;
+      if (eventData && eventData.hasOwnProperty('employee')) {
+        const message = `O empgregado <strong>${employee.name}</strong> foi alterado com sucesso!`;
+        this.showSuccessMessage(message);
+      }
     });
     modalRef.show();
   }
 
   openDestroyModal(employee: Employee) {
-    this.employeeToDelete = employee;
+    const modalRef = this.modalService.create(EmployeeDeleteModalComponent, {
+      employee
+    });
+    modalRef.onHide.subscribe((event) => {
+      const eventData = event.data;
+      if (eventData && eventData.hasOwnProperty('employee')) {
+        const message = `O empgregado <strong>${employee.name}</strong> foi excluído com sucesso!`;
+        this.showSuccessMessage(message);
+      }
+    });
+    modalRef.show();
   }
 
-  getSalaryColor(e) {
-    return e.salary > 2000 ? 'green' : null;
+  showSuccessMessage(message) {
+    this.successMessage.message = message;
+    this.successMessage.show = true;
+    setTimeout(() => {
+      this.successMessage.show = false;
+    }, 3000);
   }
-
 }
