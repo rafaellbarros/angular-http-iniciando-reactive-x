@@ -3,3 +3,13 @@ ng config schematics.@schematics/angular:component.styleext scss
 
 # Criando projeto com estilização
 ng g new project --style=scss
+
+# Atualizando o projeto
+# Verificando o que é preciso para atualizar
+ng update
+
+# Atualizando a versão do angular/core
+ng update @angular/core
+
+# Atualizando RxJS
+ng update rxjs
