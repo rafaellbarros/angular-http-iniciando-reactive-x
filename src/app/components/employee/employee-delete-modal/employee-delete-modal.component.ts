@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Employee } from 'src/app/models/employees';
 
-declare const $;
-
 @Component({
   selector: 'employee-delete-modal',
   templateUrl: './employee-delete-modal.component.html',
@@ -12,20 +10,30 @@ declare const $;
 })
 export class EmployeeDeleteModalComponent implements OnInit {
 
+  employeeId: number;
+  employee: Employee = {
+    name: '',
+    salary: 1,
+    bonus: 0
+  };
 
-  employee: Employee;
-
-  constructor(private employeeService: EmployeeService, private modalRef: ModalRefService) { 
-    this.employee = this.modalRef.context['employee'];
+  constructor(private employeeService: EmployeeService, private modalRef: ModalRefService) {
+    this.employeeId = this.modalRef.context['employeeId'];
   }
 
   ngOnInit() {
+    this.carregaDadosEmployee();
   }
 
   destroy() {
-    const copy = Object.assign({}, this.employee);
-    this.employeeService.destroyEmployee(this.employee);
-    this.modalRef.hide({employee: this.employee, submitted: true });
+    this.employeeService.deleteEmployee(this.employee.id).subscribe(() => {
+      this.modalRef.hide({ employee: this.employee, submitted: true });
+    });
   }
 
+  carregaDadosEmployee() {
+    this.employeeService.getEmployeeById(this.employeeId).subscribe(resp => {
+      this.employee = resp;
+    });
+  }
 }

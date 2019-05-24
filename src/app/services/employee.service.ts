@@ -30,6 +30,10 @@ export class EmployeeService {
     return this.http.put(`${this.employeesUrl}/${employee.id}`, employee);
   }
 
+  deleteEmployee(id: number) {
+    return this.http.delete(`${this.employeesUrl}/${id}`);
+  }
+
   addEmployee(employee: Employee) {
     employee.bonus = employee.salary >= 1000 ? 0 : employee.bonus;
   }

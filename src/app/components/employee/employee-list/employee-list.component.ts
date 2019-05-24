@@ -68,7 +68,7 @@ export class EmployeeListComponent implements OnInit {
 
   openDestroyModal(employee: Employee) {
     const modalRef = this.modalService.create(EmployeeDeleteModalComponent, {
-      employee
+      employeeId: employee.id
     });
     modalRef.onHide.subscribe((event) => {
       const eventData = event.data;
