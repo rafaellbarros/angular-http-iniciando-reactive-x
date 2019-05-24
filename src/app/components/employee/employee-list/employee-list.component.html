@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let e of employeeService.employees">
+          <tr *ngFor="let e of employees">
 
             <td><a href="javascript:void(0)" (click)="openDetailModal(e)">{{e.name}}</a></td>
             <td [innerHTML]="e.salary | myCurrency" [salaryColor]="e.salary"></td>

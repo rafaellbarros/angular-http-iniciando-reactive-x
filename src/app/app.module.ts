@@ -19,7 +19,7 @@ import { ModalContentDirective } from './components/modal-dynamic-components/mod
 import { ModalTitleComponent } from './components/modal-dynamic-components/modal-title/modal-title.component';
 import { ModalBodyComponent } from './components/modal-dynamic-components/modal-body/modal-body.component';
 import { ModalFooterComponent } from './components/modal-dynamic-components/modal-footer/modal-footer.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,8 @@ import { ModalFooterComponent } from './components/modal-dynamic-components/moda
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

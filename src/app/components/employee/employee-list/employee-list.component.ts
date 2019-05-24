@@ -16,7 +16,8 @@ import { ModalService } from '../../modal-dynamic-components/modal.service';
 })
 export class EmployeeListComponent implements OnInit {
 
-  employee: Employee;
+  employees: any = [];
+
   successMessage = {
     message: '',
     show: false
@@ -28,7 +29,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getEmployess();
   }
 
   openDetailModal(employee: Employee) {
@@ -85,5 +86,11 @@ export class EmployeeListComponent implements OnInit {
     setTimeout(() => {
       this.successMessage.show = false;
     }, 3000);
+  }
+
+  getEmployess() {
+    this.employeeService.getEmployess().subscribe(resp => {
+      this.employees = resp;
+    });
   }
 }
