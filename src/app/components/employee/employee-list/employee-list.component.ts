@@ -16,7 +16,7 @@ import { ModalService } from '../../modal-dynamic-components/modal.service';
 })
 export class EmployeeListComponent implements OnInit {
 
-  employees: any = [];
+  employees: Employee[] = [];
 
   successMessage = {
     message: '',
@@ -81,11 +81,14 @@ export class EmployeeListComponent implements OnInit {
   }
 
   showSuccessMessage(message) {
+    this.getEmployess();
+
     this.successMessage.message = message;
     this.successMessage.show = true;
     setTimeout(() => {
       this.successMessage.show = false;
     }, 3000);
+
   }
 
   getEmployess() {

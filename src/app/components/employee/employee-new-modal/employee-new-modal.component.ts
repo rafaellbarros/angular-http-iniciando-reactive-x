@@ -49,8 +49,10 @@ export class EmployeeNewModalComponent  implements OnInit, AfterViewInit, OnDest
   addEmployee(event) {
     // const copy = Object.assign({}, this.employee);
     const employee = {name: this.employee.name, salary: this.employee.salary, bonus: this.employee.bonus};
-    this.employeeService.addEmployee(employee);
-    this.modalRef.hide({employee: employee , submitted: true});
+    // this.employeeService.addEmployee(employee);
+    this.employeeService.createEmployee(employee).subscribe(resp => {
+      this.modalRef.hide({employee: employee , submitted: true});
+    });
   }
 
   ngOnDestroy(): void {
