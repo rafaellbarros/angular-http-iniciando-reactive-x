@@ -6,7 +6,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 @Component({
   selector: 'employee-detail-modal',
   templateUrl: './employee-detail-modal.component.html',
-  styleUrls: ['./employee-detail-modal.component.css']
+  styleUrls: ['./employee-detail-modal.component.scss']
 })
 export class EmployeeDetailModalComponent implements OnInit {
 

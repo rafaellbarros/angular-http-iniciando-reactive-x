@@ -6,7 +6,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 @Component({
   selector: 'employee-edit-modal',
   templateUrl: './employee-edit-modal.component.html',
-  styleUrls: ['./employee-edit-modal.component.css']
+  styleUrls: ['./employee-edit-modal.component.scss']
 })
 export class EmployeeEditModalComponent implements OnInit {
 

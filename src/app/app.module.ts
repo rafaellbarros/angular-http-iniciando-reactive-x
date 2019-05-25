@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AlertSuccessComponent } from './components/alert-success/alert-success.component';
-import { ComponenteInlineComponent } from './components/componente-inline/componente-inline.component';
 import { EmployeeDeleteModalComponent } from './components/employee/employee-delete-modal/employee-delete-modal.component';
 import { EmployeeDetailModalComponent } from './components/employee/employee-detail-modal/employee-detail-modal.component';
 import { EmployeeEditModalComponent } from './components/employee/employee-edit-modal/employee-edit-modal.component';
@@ -30,7 +29,6 @@ import { HttpClientModule } from '@angular/common/http';
     EmployeeDeleteModalComponent,
     AlertSuccessComponent,
     MyCurrencyPipe,
-    ComponenteInlineComponent,
     EmployeeDetailModalComponent,
     InputDirective,
     GetViewContainerDirective,

@@ -6,7 +6,7 @@ import { Employee } from 'src/app/models/employees';
 @Component({
   selector: 'employee-delete-modal',
   templateUrl: './employee-delete-modal.component.html',
-  styleUrls: ['./employee-delete-modal.component.css']
+  styleUrls: ['./employee-delete-modal.component.scss']
 })
 export class EmployeeDeleteModalComponent implements OnInit {
 

@@ -9,7 +9,7 @@ declare const $;
 @Component({
   selector: 'employee-new-modal',
   templateUrl: './employee-new-modal.component.html',
-  styleUrls: ['./employee-new-modal.component.css']
+  styleUrls: ['./employee-new-modal.component.scss']
 })
 export class EmployeeNewModalComponent  implements OnInit, OnDestroy {
 
