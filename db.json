@@ -47,12 +47,6 @@
       "salary": "1200",
       "bonus": 0,
       "id": 8
-    },
-    {
-      "name": "teste1",
-      "salary": 0,
-      "bonus": 0,
-      "id": 9
     }
   ]
 }
