@@ -19,6 +19,7 @@ import { ModalBodyComponent } from './components/modal-dynamic-components/modal-
 import { ModalFooterComponent } from './components/modal-dynamic-components/modal-footer/modal-footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeSearchComponent } from './components/employee/employee-search/employee-search.component';
+import { EmployeeFilterPipe } from './pipes/employee-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { EmployeeSearchComponent } from './components/employee/employee-search/e
     ModalBodyComponent,
     ModalFooterComponent,
     EmployeeSearchComponent,
+    EmployeeFilterPipe,
   ],
   entryComponents: [
     EmployeeListComponent,

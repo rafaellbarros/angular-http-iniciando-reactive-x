@@ -13,7 +13,7 @@
                           </button>
                       </div>
                       <div class="col-9 col-md-11">
-                          <employee-search></employee-search>
+                          <employee-search (onSearch)="handlerSearch($event)"></employee-search>
                       </div>
                   </div>
               </td>
@@ -25,7 +25,7 @@
         </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let e of employees">
+          <tr *ngFor="let e of employees | employeeFilter: this.search">
 
             <td><a href="javascript:void(0)" (click)="openDetailModal(e)">{{e.name}}</a></td>
             <td [innerHTML]="e.salary | myCurrency" [salaryColor]="e.salary"></td>

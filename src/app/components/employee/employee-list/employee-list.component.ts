@@ -17,6 +17,7 @@ import { ModalService } from '../../modal-dynamic-components/modal.service';
 export class EmployeeListComponent implements OnInit {
 
   employees: Employee[] = [];
+  search = '';
 
   constructor(
     public employeeService: EmployeeService,
@@ -67,6 +68,10 @@ export class EmployeeListComponent implements OnInit {
     if (eventData && eventData.hasOwnProperty('submitted')) {
       this.getEmployees();
     }
+  }
+
+  handlerSearch(search) {
+    this.search = search;
   }
 
   getEmployees() {

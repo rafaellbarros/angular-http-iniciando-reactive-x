@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'employee-search',
@@ -22,13 +23,17 @@ export class EmployeeSearchComponent implements OnInit {
 
   search = '';
 
+  @Output()
+  onSearch: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
   submit() {
-
+    this.onSearch.emit(this.search);
+    return false;
   }
 
 }
