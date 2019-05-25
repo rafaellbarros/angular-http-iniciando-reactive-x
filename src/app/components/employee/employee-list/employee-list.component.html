@@ -4,11 +4,20 @@
     <p salaryColor="valor"></p>
     <table class="table table-striped">
       <thead>
-        <tr>
-          <td colspan="3">
-            <button class="btn btn-primary" (click)="openNewModal()">Novo Empregado</button>
-          </td>
-        </tr>
+          <tr>
+              <td colspan="4">
+                  <div class="row">
+                      <div class="col-2 col-md-1">
+                          <button class="btn btn-primary" (click)="openNewModal()" title="Novo empregado">
+                              <i class="fas fa-plus"></i>
+                          </button>
+                      </div>
+                      <div class="col-9 col-md-11">
+                          <employee-search></employee-search>
+                      </div>
+                  </div>
+              </td>
+</tr>
         <tr>
           <th>Nome</th>
           <th>Salário</th>
