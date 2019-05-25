@@ -20,7 +20,9 @@ export class NotifyMessageService {
   private alert({title, text, type}: { title, text, type: Types}) {
     this.pnotify.alert({
       title,
+      titleTrusted: true,
       text,
+      textTrusted: true,
       type
     });
   }

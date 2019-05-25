@@ -3,6 +3,7 @@ import { Employee } from 'src/app/models/employees';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { InputDirective } from '../../../directives/input.directive';
 import { ModalRefService } from '../../modal-dynamic-components/modal-ref.service';
+import { NotifyMessageService } from 'src/app/services/notify-message.service';
 
 declare const $;
 
@@ -14,7 +15,6 @@ declare const $;
 export class EmployeeNewModalComponent  implements OnInit, OnDestroy {
 
   employee: Employee = {
-    id: 0,
     name: '',
     salary:  0,
     bonus: 0,
@@ -30,13 +30,13 @@ export class EmployeeNewModalComponent  implements OnInit, OnDestroy {
 
   constructor(
     private employeeService: EmployeeService,
-    private modalRef: ModalRefService) {
+    private modalRef: ModalRefService,
+    private notifyMessage: NotifyMessageService) {
   }
 
   ngOnInit() {
 
     this.modalRef.onShow.subscribe(() => {
-      console.log('inputName > ', this.inputName);
       this.inputName.focus();
     });
   }
@@ -45,6 +45,7 @@ export class EmployeeNewModalComponent  implements OnInit, OnDestroy {
   addEmployee(event) {
     this.employeeService.createEmployee(this.employee).subscribe(resp => {
       this.modalRef.hide({employee: resp , submitted: true});
+      this.notifyMessage.success('Sucesso', `O empgregado <strong>${this.employee.name}</strong> foi criado com sucesso!`);
     });
   }
 

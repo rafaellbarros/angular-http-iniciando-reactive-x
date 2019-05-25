@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, Output, EventEmitter, Input, OnDestroy }
 import { Employee } from 'src/app/models/employees';
 import { ModalRefService } from '../../modal-dynamic-components/modal-ref.service';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { NotifyMessageService } from 'src/app/services/notify-message.service';
 
 @Component({
   selector: 'employee-edit-modal',
@@ -17,7 +18,10 @@ export class EmployeeEditModalComponent implements OnInit {
     bonus: 0
   };
 
-  constructor(private employeeService: EmployeeService, private modalRef: ModalRefService) {
+  constructor(
+    private employeeService: EmployeeService,
+    private modalRef: ModalRefService,
+    private notifyMessage: NotifyMessageService) {
     this.employeeId = this.modalRef.context['employeeId'];
   }
 
@@ -28,6 +32,7 @@ export class EmployeeEditModalComponent implements OnInit {
   editEmployee(event) {
     this.employeeService.editEmployee(this.employee).subscribe(resp => {
       this.modalRef.hide({ employee: resp, submitted: true });
+      this.notifyMessage.success('Sucesso', `O empgregado <strong>${this.employee.name}</strong> foi alterado com sucesso!`);
     });
   }
 

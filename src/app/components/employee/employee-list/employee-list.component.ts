@@ -18,11 +18,6 @@ export class EmployeeListComponent implements OnInit {
 
   employees: Employee[] = [];
 
-  successMessage = {
-    message: '',
-    show: false
-  };
-
   constructor(
     public employeeService: EmployeeService,
     private modalService: ModalService) {
@@ -42,12 +37,7 @@ export class EmployeeListComponent implements OnInit {
   openNewModal() {
     const modalRef = this.modalService.create(EmployeeNewModalComponent);
     modalRef.onHide.subscribe((event) => {
-      const eventData = event.data;
-      if (eventData && eventData.hasOwnProperty('employee')) {
-        const { employee } = eventData;
-        const message = `O empgregado <strong>${employee.name}</strong> foi criado com sucesso!`;
-        this.showSuccessMessage(message);
-      }
+      this.getEmployeeAfterSuccess(event);
     });
     modalRef.show();
   }
@@ -57,11 +47,7 @@ export class EmployeeListComponent implements OnInit {
       employeeId: employee.id
     });
     modalRef.onHide.subscribe((event) => {
-      const eventData = event.data;
-      if (eventData && eventData.hasOwnProperty('employee')) {
-        const message = `O empgregado <strong>${employee.name}</strong> foi alterado com sucesso!`;
-        this.showSuccessMessage(message);
-      }
+      this.getEmployeeAfterSuccess(event);
     });
     modalRef.show();
   }
@@ -71,24 +57,16 @@ export class EmployeeListComponent implements OnInit {
       employeeId: employee.id
     });
     modalRef.onHide.subscribe((event) => {
-      const eventData = event.data;
-      if (eventData && eventData.hasOwnProperty('employee')) {
-        const message = `O empgregado <strong>${employee.name}</strong> foi excluído com sucesso!`;
-        this.showSuccessMessage(message);
-      }
+      this.getEmployeeAfterSuccess(event);
     });
     modalRef.show();
   }
 
-  showSuccessMessage(message) {
-    this.getEmployees();
-
-    this.successMessage.message = message;
-    this.successMessage.show = true;
-    setTimeout(() => {
-      this.successMessage.show = false;
-    }, 3000);
-
+  getEmployeeAfterSuccess(event) {
+    const eventData = event.data;
+    if (eventData && eventData.hasOwnProperty('submitted')) {
+      this.getEmployees();
+    }
   }
 
   getEmployees() {

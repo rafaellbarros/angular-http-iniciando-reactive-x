@@ -7,12 +7,6 @@
       "bonus": 0
     },
     {
-      "id": 2,
-      "name": "Cicrano da Silva",
-      "salary": 10000,
-      "bonus": 0
-    },
-    {
       "id": 3,
       "name": "Beltrano da Silva",
       "salary": 900,
@@ -47,6 +41,18 @@
       "name": "teste",
       "salary": 0,
       "bonus": 0
+    },
+    {
+      "name": "teste",
+      "salary": 0,
+      "bonus": 0,
+      "id": 9
+    },
+    {
+      "name": "teste",
+      "salary": 0,
+      "bonus": 0,
+      "id": 10
     }
   ]
 }

@@ -2,6 +2,7 @@ import { ModalRefService } from './../../modal-dynamic-components/modal-ref.serv
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Employee } from 'src/app/models/employees';
+import { NotifyMessageService } from 'src/app/services/notify-message.service';
 
 @Component({
   selector: 'employee-delete-modal',
@@ -17,7 +18,10 @@ export class EmployeeDeleteModalComponent implements OnInit {
     bonus: 0
   };
 
-  constructor(private employeeService: EmployeeService, private modalRef: ModalRefService) {
+  constructor(
+    private employeeService: EmployeeService,
+    private modalRef: ModalRefService,
+    private notifyMessage: NotifyMessageService) {
     this.employeeId = this.modalRef.context['employeeId'];
   }
 
@@ -28,6 +32,7 @@ export class EmployeeDeleteModalComponent implements OnInit {
   destroy() {
     this.employeeService.deleteEmployee(this.employee.id).subscribe(() => {
       this.modalRef.hide({ employee: this.employee, submitted: true });
+      this.notifyMessage.success('Sucesso', `O empgregado <strong>${this.employee.name}</strong> foi excluído com sucesso!`);
     });
   }
 
