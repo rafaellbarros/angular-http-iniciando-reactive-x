@@ -18,6 +18,7 @@ export class EmployeeListComponent implements OnInit {
 
   employees: Employee[] = [];
   search = '';
+  sortColumn = { column: 'name',  sort: 'asc' };
 
   constructor(
     public employeeService: EmployeeService,

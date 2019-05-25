@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmployeeSearchComponent } from './components/employee/employee-search/employee-search.component';
 import { EmployeeFilterPipe } from './pipes/employee-filter.pipe';
 import { SortColumnComponent } from './components/sort-column/sort-column.component';
+import { OrderPipe } from './pipes/order.pipe';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { SortColumnComponent } from './components/sort-column/sort-column.compon
     EmployeeSearchComponent,
     EmployeeFilterPipe,
     SortColumnComponent,
+    OrderPipe,
   ],
   entryComponents: [
     EmployeeListComponent,

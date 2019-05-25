@@ -19,13 +19,14 @@
               </td>
         </tr>
         <tr>
-          <th sortColumn>Nome</th>
-          <th>Salário</th>
-          <th>Bonus</th>
+          <th [sortColumn]="sortColumn" columnName="name">Nome</th>
+          <th [sortColumn]="sortColumn" columnName="salary">Salário</th>
+          <th [sortColumn]="sortColumn" columnName="bonus">Bonus</th>
         </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let e of employees | employeeFilter: this.search">
+          {{ sortColumn | json }}
+          <tr *ngFor="let e of employees | employeeFilter: search | order: sortColumn">
 
             <td><a href="javascript:void(0)" (click)="openDetailModal(e)">{{e.name}}</a></td>
             <td [innerHTML]="e.salary | myCurrency" [salaryColor]="e.salary"></td>
