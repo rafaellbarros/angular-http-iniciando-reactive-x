@@ -20,6 +20,8 @@ import { ModalFooterComponent } from './components/modal-dynamic-components/moda
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeSearchComponent } from './components/employee/employee-search/employee-search.component';
 import { EmployeeFilterPipe } from './pipes/employee-filter.pipe';
+import { SortColumnComponent } from './components/sort-column/sort-column.component';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { EmployeeFilterPipe } from './pipes/employee-filter.pipe';
     ModalFooterComponent,
     EmployeeSearchComponent,
     EmployeeFilterPipe,
+    SortColumnComponent,
   ],
   entryComponents: [
     EmployeeListComponent,

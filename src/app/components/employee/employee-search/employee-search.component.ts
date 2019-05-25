@@ -21,10 +21,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class EmployeeSearchComponent implements OnInit {
 
-  search = '';
+  @Output() onSearch: EventEmitter<string> = new EventEmitter();
 
-  @Output()
-  onSearch: EventEmitter<any> = new EventEmitter();
+  search = '';
 
   constructor() { }
 
