@@ -19,6 +19,11 @@ export class EmployeeListComponent implements OnInit {
   employees: Employee[] = [];
   search = '';
   sortColumn = { column: 'name',  sort: 'asc' };
+  pagination = {
+    itemsPerPage: 1,
+    currentPage: 1,
+    // totalItems: 10
+  };
 
   constructor(
     public employeeService: EmployeeService,
@@ -73,6 +78,7 @@ export class EmployeeListComponent implements OnInit {
 
   handlerSearch(search) {
     this.search = search;
+    this.pagination .currentPage = 1;
   }
 
   getEmployees() {
@@ -85,7 +91,7 @@ export class EmployeeListComponent implements OnInit {
 // pure function
 // passa parametros e sempre tem o mesmo resultado com esses paramentros
 // chamar varias vezes a funçao passando os mesmo paramentos pode retornar o mesmo resultado
-
+/*
 function soma(param1, param2) {
   return param1 + param2;
 }
@@ -104,3 +110,4 @@ contador(1); // 1
 contador(1); // 2
 contador(1); // 3
 contador(1); // 4
+*/

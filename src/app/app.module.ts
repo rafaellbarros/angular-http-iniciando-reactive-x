@@ -22,6 +22,7 @@ import { EmployeeSearchComponent } from './components/employee/employee-search/e
 import { EmployeeFilterPipe } from './pipes/employee-filter.pipe';
 import { SortColumnComponent } from './components/sort-column/sort-column.component';
 import { OrderPipe } from './pipes/order.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { OrderPipe } from './pipes/order.pipe';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

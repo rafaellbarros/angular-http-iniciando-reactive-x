@@ -25,7 +25,7 @@
         </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let e of employees | employeeFilter: search | order: sortColumn">
+          <tr *ngFor="let e of employees | employeeFilter: search | order: sortColumn | paginate: pagination">
 
             <td><a href="javascript:void(0)" (click)="openDetailModal(e)">{{e.name}}</a></td>
             <td [innerHTML]="e.salary | myCurrency" [salaryColor]="e.salary"></td>
@@ -39,5 +39,7 @@
           </tr>
       </tbody>
     </table>
+
+    <pagination-controls previousLabel="Anterior" nextLabel="Próximo" (pageChange)="pagination.currentPage = $event"></pagination-controls>
   </div>
 </div>
