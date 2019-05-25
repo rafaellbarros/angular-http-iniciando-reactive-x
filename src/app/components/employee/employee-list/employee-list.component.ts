@@ -81,3 +81,26 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 }
+
+// pure function
+// passa parametros e sempre tem o mesmo resultado com esses paramentros
+// chamar varias vezes a funçao passando os mesmo paramentos pode retornar o mesmo resultado
+
+function soma(param1, param2) {
+  return param1 + param2;
+}
+
+// impure function
+// chamar varias vezes a funçao passando os mesmo paramentos pode retornar valores diferentes
+
+const contador = function() {
+  let count = 0;
+  return function (valor) {
+    return count += valor;
+  };
+}();
+
+contador(1); // 1
+contador(1); // 2
+contador(1); // 3
+contador(1); // 4

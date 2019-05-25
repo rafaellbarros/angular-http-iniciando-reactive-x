@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import _ from 'lodash';
 
 @Pipe({
-  name: 'order'
+  name: 'order',
+  pure: false
 })
 export class OrderPipe implements PipeTransform {
 

@@ -25,7 +25,6 @@
         </tr>
       </thead>
       <tbody>
-          {{ sortColumn | json }}
           <tr *ngFor="let e of employees | employeeFilter: search | order: sortColumn">
 
             <td><a href="javascript:void(0)" (click)="openDetailModal(e)">{{e.name}}</a></td>
