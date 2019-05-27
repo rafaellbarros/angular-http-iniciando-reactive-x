@@ -42,6 +42,9 @@
             </td>
 
           </tr>
+          <tr *ngIf="!employees.length">
+            <td [colSpan]="columns.length" class="text-center">Nenhum registro encontrado.</td>
+          </tr>
       </tbody>
     </table>
 
