@@ -12,10 +12,11 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  list({search}): Observable<Employee[]> {
+  list({search, sort}: {search, sort: {column, sort}}): Observable<Employee[]> {
 
     let filterObject = {
-
+      _sort: sort.column,
+      _order: sort.sort
     };
 
     if ( search !== '') {

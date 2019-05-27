@@ -82,8 +82,12 @@ export class EmployeeListComponent implements OnInit {
     this.getEmployees();
   }
 
+  handleSort(event) {
+    this.getEmployees();
+  }
+
   getEmployees() {
-    this.employeeService.list({search: this.search}).subscribe(resp => {
+    this.employeeService.list({search: this.search, sort: this.sortColumn}).subscribe(resp => {
       this.employees = resp;
     });
   }

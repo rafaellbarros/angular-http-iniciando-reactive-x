@@ -19,9 +19,9 @@
               </td>
         </tr>
         <tr>
-          <th [sortColumn]="sortColumn" columnName="name">Nome</th>
-          <th [sortColumn]="sortColumn" columnName="salary">Salário</th>
-          <th [sortColumn]="sortColumn" columnName="bonus">Bonus</th>
+          <th [sortColumn]="sortColumn" columnName="name" (onSort)="handleSort($event)">Nome</th>
+          <th [sortColumn]="sortColumn" columnName="salary" (onSort)="handleSort($event)">Salário</th>
+          <th [sortColumn]="sortColumn" columnName="bonus" (onSort)="handleSort($event)">Bonus</th>
         </tr>
       </thead>
       <tbody>
