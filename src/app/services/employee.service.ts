@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpResponse, HttpErrorResponse } from '@angula
 import { Employee } from '../models/employees';
 import { Observable, throwError } from 'rxjs';
 import { NotifyMessageService } from './notify-message.service';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 interface ListHttpParams {
   search;
@@ -57,6 +57,7 @@ export class EmployeeService {
                           }
                         };
                       }),
+                      tap(console.log),
                       catchError(error => this.handleError(error))
                     );
   }
