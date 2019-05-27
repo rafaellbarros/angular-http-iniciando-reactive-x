@@ -82,7 +82,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   getEmployees() {
-    this.employeeService.getEmployees().subscribe(resp => {
+    this.employeeService.list().subscribe(resp => {
       this.employees = resp;
     });
   }

@@ -43,7 +43,7 @@ export class EmployeeNewModalComponent  implements OnInit, OnDestroy {
 
 
   addEmployee(event) {
-    this.employeeService.createEmployee(this.employee).subscribe(resp => {
+    this.employeeService.create(this.employee).subscribe(resp => {
       this.modalRef.hide({employee: resp , submitted: true});
       this.notifyMessage.success('Sucesso', `O empgregado <strong>${this.employee.name}</strong> foi criado com sucesso!`);
     });

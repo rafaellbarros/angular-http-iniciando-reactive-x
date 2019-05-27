@@ -1,46 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Employee } from '../models/employees';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  private employeesUrl = 'http://localhost:3000/employees';
-
-  employees;
+  private baseUrl = 'http://localhost:3000/employees';
 
   constructor(private http: HttpClient) { }
 
-  getEmployees() {
-    return this.http.get<Employee[]>(this.employeesUrl);
+  list(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.baseUrl);
   }
 
-  getEmployeeById(id: number) {
-    return this.http.get<Employee>(`${this.employeesUrl}/${id}`);
+  getById(id: number): Observable<Employee> {
+    return this.http.get<Employee>(`${this.baseUrl}/${id}`);
   }
 
-  createEmployee(employee: Employee) {
-    employee.bonus = employee.salary >= 1000 ? 0 : employee.bonus;
-    return this.http.post(this.employeesUrl, employee);
+  create(employee: Employee): Observable<Employee> {
+    return this.http.post<Employee>(this.baseUrl, employee);
   }
 
-  editEmployee(employee: Employee) {
-    return this.http.put(`${this.employeesUrl}/${employee.id}`, employee);
+  edit(employee: Employee): Observable<Employee> {
+    return this.http.put<Employee>(`${this.baseUrl}/${employee.id}`, employee);
   }
 
-  deleteEmployee(id: number) {
-    return this.http.delete(`${this.employeesUrl}/${id}`);
-  }
-
-  addEmployee(employee: Employee) {
-    employee.bonus = employee.salary >= 1000 ? 0 : employee.bonus;
-  }
-
-  destroyEmployee(employee: Employee) {
-    const index = this.employees.indexOf(employee);
-    this.employees.splice(index, 1);
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
 }

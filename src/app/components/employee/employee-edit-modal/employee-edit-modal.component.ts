@@ -30,14 +30,14 @@ export class EmployeeEditModalComponent implements OnInit {
   }
 
   editEmployee(event) {
-    this.employeeService.editEmployee(this.employee).subscribe(resp => {
+    this.employeeService.edit(this.employee).subscribe(resp => {
       this.modalRef.hide({ employee: resp, submitted: true });
       this.notifyMessage.success('Sucesso', `O empgregado <strong>${this.employee.name}</strong> foi alterado com sucesso!`);
     });
   }
 
   carregaDadosEmployee() {
-    this.employeeService.getEmployeeById(this.employeeId).subscribe(resp => {
+    this.employeeService.getById(this.employeeId).subscribe(resp => {
       this.employee = resp;
     });
   }

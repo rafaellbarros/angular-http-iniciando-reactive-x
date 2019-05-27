@@ -30,14 +30,14 @@ export class EmployeeDeleteModalComponent implements OnInit {
   }
 
   destroy() {
-    this.employeeService.deleteEmployee(this.employee.id).subscribe(() => {
+    this.employeeService.delete(this.employee.id).subscribe(() => {
       this.modalRef.hide({ employee: this.employee, submitted: true });
       this.notifyMessage.success('Sucesso', `O empgregado <strong>${this.employee.name}</strong> foi excluído com sucesso!`);
     });
   }
 
   carregaDadosEmployee() {
-    this.employeeService.getEmployeeById(this.employeeId).subscribe(resp => {
+    this.employeeService.getById(this.employeeId).subscribe(resp => {
       this.employee = resp;
     });
   }
