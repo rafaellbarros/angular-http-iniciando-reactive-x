@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Employee } from '../models/employees';
 import { Observable } from 'rxjs';
 
@@ -12,8 +12,21 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  list(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this.baseUrl);
+  list({search}): Observable<Employee[]> {
+
+    let filterObject = {
+
+    };
+
+    if ( search !== '') {
+      filterObject = Object.assign({}, filterObject, { name: search});
+    }
+
+    const params = new HttpParams({
+      fromObject: filterObject
+    });
+
+    return this.http.get<Employee[]>(this.baseUrl, {params});
   }
 
   getById(id: number): Observable<Employee> {

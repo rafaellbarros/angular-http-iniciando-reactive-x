@@ -79,10 +79,11 @@ export class EmployeeListComponent implements OnInit {
   handlerSearch(search) {
     this.search = search;
     this.pagination .currentPage = 1;
+    this.getEmployees();
   }
 
   getEmployees() {
-    this.employeeService.list().subscribe(resp => {
+    this.employeeService.list({search: this.search}).subscribe(resp => {
       this.employees = resp;
     });
   }
