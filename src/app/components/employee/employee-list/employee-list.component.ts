@@ -107,8 +107,9 @@ export class EmployeeListComponent implements OnInit {
         page: this.pagination.currentPage,
         perPage: this.pagination.itemsPerPage
     }}).subscribe(resp => {
-      this.pagination.totalItems = +resp.headers.get('X-Total-Count');
-      this.employees = resp.body;
+      this.pagination.totalItems = resp.meta.total;
+      this.pagination.itemsPerPage = resp.meta.perPage;
+      this.employees = resp.data;
     });
   }
 }

@@ -3,15 +3,18 @@ import { HttpClient, HttpParams, HttpResponse, HttpErrorResponse } from '@angula
 import { Employee } from '../models/employees';
 import { Observable, throwError } from 'rxjs';
 import { NotifyMessageService } from './notify-message.service';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 interface ListHttpParams {
   search;
   sort: { column, sort};
-  pagination: {
-    page: number;
-    perPage: number;
-  };
+  pagination: Pagination;
+}
+
+interface Pagination {
+  page: number;
+  perPage: number;
+  total?: number;
 }
 
 @Injectable({
@@ -25,7 +28,7 @@ export class EmployeeService {
     private http: HttpClient,
     private notifyMessage: NotifyMessageService) { }
 
-  list({search, sort, pagination}: ListHttpParams): Observable<HttpResponse<Employee[]>> {
+  list({search, sort, pagination}: ListHttpParams): Observable<{data: Employee[], meta: Pagination }> {
 
     let filterObject = {
       _sort: sort.column,
@@ -44,6 +47,16 @@ export class EmployeeService {
 
     return this.http.get<Employee[]>(this.baseUrl, {params, observe: 'response'})
                     .pipe(
+                      map(resp => {
+                        return {
+                          data: resp.body,
+                          meta: {
+                            page: pagination.page,
+                            perPage: pagination.perPage,
+                            total: +resp.headers.get('X-Total-Count')
+                          }
+                        };
+                      }),
                       catchError(error => this.handleError(error))
                     );
   }
@@ -51,6 +64,7 @@ export class EmployeeService {
   getById(id: number): Observable<Employee> {
     return this.http.get<Employee>(`${this.baseUrl}/${id}`)
               .pipe(
+                map((employee) => employee),
                 catchError(error => this.handleError(error))
               );
   }

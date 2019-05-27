@@ -28,7 +28,7 @@
       "id": 6,
       "name": "Funcionario Z",
       "salary": 600,
-      "bonus": 1000
+      "bonus": "1000000"
     },
     {
       "name": "Rafael Barros",
