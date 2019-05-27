@@ -22,7 +22,7 @@ export class EmployeeListComponent implements OnInit {
   pagination = {
     itemsPerPage: 1,
     currentPage: 1,
-    // totalItems: 10
+    totalItems: 0
   };
 
   constructor(
@@ -76,7 +76,7 @@ export class EmployeeListComponent implements OnInit {
     }
   }
 
-  handlerSearch(search) {
+  handleSearch(search) {
     this.search = search;
     this.pagination .currentPage = 1;
     this.getEmployees();
@@ -86,9 +86,21 @@ export class EmployeeListComponent implements OnInit {
     this.getEmployees();
   }
 
+  handlePagination(page) {
+    this.pagination.currentPage = page;
+    this.getEmployees();
+  }
+
   getEmployees() {
-    this.employeeService.list({search: this.search, sort: this.sortColumn}).subscribe(resp => {
-      this.employees = resp;
+    this.employeeService.list({
+      search: this.search, 
+      sort: this.sortColumn, 
+      pagination: {
+        page: this.pagination.currentPage,
+        perPage: this.pagination.itemsPerPage
+      }}).subscribe(resp => {
+        this.pagination.totalItems = 8;
+        this.employees = resp;
     });
   }
 }

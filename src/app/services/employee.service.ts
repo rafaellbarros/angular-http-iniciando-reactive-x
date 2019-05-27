@@ -3,6 +3,15 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Employee } from '../models/employees';
 import { Observable } from 'rxjs';
 
+interface ListHttpParams {
+  search;
+  sort: { column, sort};
+  pagination: {
+    page: number;
+    perPage: number;
+  };
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,11 +21,13 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  list({search, sort}: {search, sort: {column, sort}}): Observable<Employee[]> {
+  list({search, sort, pagination}: ListHttpParams): Observable<Employee[]> {
 
     let filterObject = {
       _sort: sort.column,
-      _order: sort.sort
+      _order: sort.sort,
+      _page: pagination.page + '',
+      _limit: pagination.perPage + ''
     };
 
     if ( search !== '') {
