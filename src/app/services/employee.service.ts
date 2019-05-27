@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Employee } from '../models/employees';
 import { Observable } from 'rxjs';
 
@@ -21,7 +21,7 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  list({search, sort, pagination}: ListHttpParams): Observable<Employee[]> {
+  list({search, sort, pagination}: ListHttpParams): Observable<HttpResponse<Employee[]>> {
 
     let filterObject = {
       _sort: sort.column,
@@ -38,7 +38,7 @@ export class EmployeeService {
       fromObject: filterObject
     });
 
-    return this.http.get<Employee[]>(this.baseUrl, {params});
+    return this.http.get<Employee[]>(this.baseUrl, {params, observe: 'response'});
   }
 
   getById(id: number): Observable<Employee> {

@@ -20,7 +20,7 @@ export class EmployeeListComponent implements OnInit {
   search = '';
   sortColumn = { column: 'name',  sort: 'asc' };
   pagination = {
-    itemsPerPage: 1,
+    itemsPerPage: 5,
     currentPage: 1,
     totalItems: 0
   };
@@ -93,14 +93,14 @@ export class EmployeeListComponent implements OnInit {
 
   getEmployees() {
     this.employeeService.list({
-      search: this.search, 
-      sort: this.sortColumn, 
+      search: this.search,
+      sort: this.sortColumn,
       pagination: {
         page: this.pagination.currentPage,
         perPage: this.pagination.itemsPerPage
       }}).subscribe(resp => {
-        this.pagination.totalItems = 8;
-        this.employees = resp;
+        this.pagination.totalItems = +resp.headers.get('X-Total-Count');
+        this.employees = resp.body;
     });
   }
 }
