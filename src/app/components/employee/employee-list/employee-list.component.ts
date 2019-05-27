@@ -7,6 +7,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { EmployeeEditModalComponent } from '../employee-edit-modal/employee-edit-modal.component';
 import { EmployeeNewModalComponent } from '../employee-new-modal/employee-new-modal.component';
 import { ModalService } from '../../modal-dynamic-components/modal.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -98,9 +99,9 @@ export class EmployeeListComponent implements OnInit {
       pagination: {
         page: this.pagination.currentPage,
         perPage: this.pagination.itemsPerPage
-      }}).subscribe(resp => {
-        this.pagination.totalItems = +resp.headers.get('X-Total-Count');
-        this.employees = resp.body;
+    }}).subscribe(resp => {
+      this.pagination.totalItems = +resp.headers.get('X-Total-Count');
+      this.employees = resp.body;
     });
   }
 }
