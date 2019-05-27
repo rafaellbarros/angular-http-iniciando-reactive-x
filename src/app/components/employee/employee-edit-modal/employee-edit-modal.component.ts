@@ -18,6 +18,8 @@ export class EmployeeEditModalComponent implements OnInit {
     bonus: 0
   };
 
+  error = false;
+
   constructor(
     private employeeService: EmployeeService,
     private modalRef: ModalRefService,
@@ -39,6 +41,6 @@ export class EmployeeEditModalComponent implements OnInit {
   carregaDadosEmployee() {
     this.employeeService.getById(this.employeeId).subscribe(resp => {
       this.employee = resp;
-    });
+    }, error => this.error = true);
   }
 }

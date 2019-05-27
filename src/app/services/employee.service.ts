@@ -84,8 +84,13 @@ export class EmployeeService {
       // client-side error
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // back-end error
-      errorMessage = `Error: código - ${error.status}<br />, Mensagem: ${error.message}`;
+      switch (error.status) {
+        case 404:
+          errorMessage = 'Recurso não encontrado';
+          break;
+        default:
+          errorMessage = `Error: código - ${error.status}<br />, Mensagem: ${error.message}`;
+      }
     }
     this.notifyMessage.error('Não foi possível realizar a operação', errorMessage);
     return throwError(error);

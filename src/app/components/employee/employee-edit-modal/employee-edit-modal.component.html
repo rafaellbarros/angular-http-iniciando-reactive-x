@@ -2,27 +2,29 @@
     <h5 >Editar empregado {{ employee?.name }}</h5>
 </modal-title>
 <form (submit)="editEmployee($event)">
-<modal-body>
-    <div>
-        <div class="form-group">
-            <label>Nome:</label>
-            <input class="form-control" type="text" name="nome" [(ngModel)]="employee.name"><br>
-        </div>
-        <div class="form-group">
-            <label>Salário:</label>
-            <input class="form-control" type="text" name="salary" [(ngModel)]="employee.salary"><br>
-        </div>
+    <fieldset [disabled]="error">
+        <modal-body>
+            <div>
+                <div class="form-group">
+                    <label>Nome:</label>
+                    <input class="form-control" type="text" name="nome" [(ngModel)]="employee.name"><br>
+                </div>
+                <div class="form-group">
+                    <label>Salário:</label>
+                    <input class="form-control" type="text" name="salary" [(ngModel)]="employee.salary"><br>
+                </div>
 
-        <div class="form-group" [hidden]="employee.salary >= 1000">
-            <label>Bonus:</label>
-            <input class="form-control" type="text" name="bonus" [(ngModel)]="employee.bonus"><br>
-        </div>
-      </div>
-</modal-body>
-<modal-footer>
-    <div >
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Editar</button>
-      </div>
-</modal-footer>
+                <div class="form-group" [hidden]="employee.salary >= 1000">
+                    <label>Bonus:</label>
+                    <input class="form-control" type="text" name="bonus" [(ngModel)]="employee.bonus"><br>
+                </div>
+            </div>
+        </modal-body>
+        <modal-footer>
+            <div >
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Editar</button>
+            </div>
+        </modal-footer>
+    </fieldset>
 </form>
