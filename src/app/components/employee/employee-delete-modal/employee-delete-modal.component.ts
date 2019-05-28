@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Employee } from 'src/app/models/employees';
 import { NotifyMessageService } from 'src/app/services/notify-message.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'employee-delete-modal',
@@ -12,6 +13,8 @@ import { NotifyMessageService } from 'src/app/services/notify-message.service';
 export class EmployeeDeleteModalComponent implements OnInit {
 
   employeeId: number;
+  employee$: Observable<Employee>;
+
   employee: Employee = {
     name: '',
     salary: 1,
@@ -26,14 +29,17 @@ export class EmployeeDeleteModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.carregaDadosEmployee();
+    this.employee$ = this.employeeService.getById(this.employeeId);
   }
 
-  destroy() {
-    this.employeeService.delete(this.employee.id).subscribe(() => {
-      this.modalRef.hide({ employee: this.employee, submitted: true });
-      this.notifyMessage.success('Sucesso', `O empgregado <strong>${this.employee.name}</strong> foi excluído com sucesso!`);
+  async destroy() {
+    const employee = await this.employee$.toPromise();
+
+    this.employeeService.delete(employee.id).subscribe(() => {
+      this.modalRef.hide({ employee: employee, submitted: true });
+      this.notifyMessage.success('Sucesso', `O empgregado <strong>${employee.name}</strong> foi excluído com sucesso!`);
     });
+
   }
 
   carregaDadosEmployee() {
@@ -41,4 +47,5 @@ export class EmployeeDeleteModalComponent implements OnInit {
       this.employee = resp;
     });
   }
+
 }

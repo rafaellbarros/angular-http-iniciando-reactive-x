@@ -35,24 +35,6 @@
       "salary": 1000,
       "bonus": 100,
       "id": 7
-    },
-    {
-      "id": 8,
-      "name": "teste",
-      "salary": 0,
-      "bonus": 0
-    },
-    {
-      "name": "teste",
-      "salary": 0,
-      "bonus": "50000",
-      "id": 9
-    },
-    {
-      "name": "teste",
-      "salary": 0,
-      "bonus": "2000",
-      "id": 10
     }
   ]
 }
