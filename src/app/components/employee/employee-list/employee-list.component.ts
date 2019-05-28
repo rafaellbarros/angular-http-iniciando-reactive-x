@@ -100,6 +100,9 @@ export class EmployeeListComponent implements OnInit {
   }
 
   getEmployees() {
+    // memory leak - vazamento de memória
+    // utilizando a memória ram
+    // serviço --> notificar assinantes
     this.employeeService.list({
       search: this.search,
       sort: this.sortColumn,

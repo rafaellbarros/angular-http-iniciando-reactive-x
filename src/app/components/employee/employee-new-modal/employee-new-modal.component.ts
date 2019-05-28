@@ -27,6 +27,7 @@ export class EmployeeNewModalComponent  implements OnInit, OnDestroy {
   @ViewChildren(InputDirective)
   inputs;
 
+  unSubscribeOnShow;
 
   constructor(
     private employeeService: EmployeeService,
@@ -36,7 +37,7 @@ export class EmployeeNewModalComponent  implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.modalRef.onShow.subscribe(() => {
+    this.unSubscribeOnShow = this.modalRef.onShow.subscribe(() => {
       this.inputName.focus();
     });
   }
@@ -51,5 +52,6 @@ export class EmployeeNewModalComponent  implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     console.log('employee new modal foi destruído');
+    this.unSubscribeOnShow.unsubscribe();
   }
 }

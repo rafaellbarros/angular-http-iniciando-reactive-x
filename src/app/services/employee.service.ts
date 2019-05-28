@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpResponse, HttpErrorResponse } from '@angula
 import { Employee } from '../models/employees';
 import { Observable, throwError } from 'rxjs';
 import { NotifyMessageService } from './notify-message.service';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, first, take } from 'rxjs/operators';
 
 interface ListHttpParams {
   search;
@@ -47,6 +47,7 @@ export class EmployeeService {
 
     return this.http.get<Employee[]>(this.baseUrl, {params, observe: 'response'})
                     .pipe(
+                      first(),
                       map(resp => {
                         return {
                           data: resp.body,
@@ -65,6 +66,7 @@ export class EmployeeService {
   getById(id: number): Observable<Employee> {
     return this.http.get<Employee>(`${this.baseUrl}/${id}`)
               .pipe(
+                first(),
                 map((employee) => employee),
                 catchError(error => this.handleError(error))
               );
@@ -73,6 +75,7 @@ export class EmployeeService {
   create(employee: Employee): Observable<Employee> {
     return this.http.post<Employee>(this.baseUrl, employee)
               .pipe(
+                first(),
                 catchError(error => this.handleError(error))
               );
   }
@@ -80,6 +83,7 @@ export class EmployeeService {
   edit(employee: Employee): Observable<Employee> {
     return this.http.put<Employee>(`${this.baseUrl}/${employee.id}`, employee)
               .pipe(
+                first(),
                 catchError(error => this.handleError(error))
               );
   }
@@ -87,6 +91,7 @@ export class EmployeeService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`)
               .pipe(
+                first(),
                 catchError(error => this.handleError(error))
               );
   }

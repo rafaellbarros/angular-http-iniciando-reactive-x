@@ -53,18 +53,6 @@
       "salary": 0,
       "bonus": 0,
       "id": 10
-    },
-    {
-      "name": "xpto",
-      "salary": "20000",
-      "bonus": 0,
-      "id": 11
-    },
-    {
-      "name": "teste",
-      "salary": "15000000",
-      "bonus": 0,
-      "id": 12
     }
   ]
 }
