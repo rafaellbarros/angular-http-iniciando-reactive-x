@@ -93,14 +93,14 @@ export class ModalDynamicComponent implements OnInit, OnDestroy {
 
   private registerEvents() {
     $(this.divModal).on('hidden.bs.modal', (e) => {
-      this.onHide.next({
+      this._onHide.next({
         event: e,
         data: this.hideEventData
       });
     });
 
     $(this.divModal).on('shown.bs.modal', (e) => {
-      this.onShow.next({
+      this._onShow.next({
         event: e,
         data: this.showEventData
       });

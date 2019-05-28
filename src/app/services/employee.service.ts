@@ -72,6 +72,10 @@ export class EmployeeService {
               );
   }
 
+  getByIdAsync(id: number): Promise<Employee> {
+    return this.http.get<Employee>(`${this.baseUrl}/${id}`).toPromise();
+  }
+
   create(employee: Employee): Observable<Employee> {
     return this.http.post<Employee>(this.baseUrl, employee)
               .pipe(

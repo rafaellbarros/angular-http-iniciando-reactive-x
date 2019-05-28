@@ -28,7 +28,8 @@ export class EmployeeEditModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.carregaDadosEmployee();
+    // this.carregaDadosEmployee();
+    this.carregaDadosEmployeeAsync();
   }
 
   editEmployee(event) {
@@ -36,6 +37,14 @@ export class EmployeeEditModalComponent implements OnInit {
       this.modalRef.hide({ employee: resp, submitted: true });
       this.notifyMessage.success('Sucesso', `O empgregado <strong>${this.employee.name}</strong> foi alterado com sucesso!`);
     });
+  }
+
+  async carregaDadosEmployeeAsync() {
+    try {
+      this.employee = await this.employeeService.getByIdAsync(this.employeeId);
+    } catch (error) {
+      this.error = true;
+    }
   }
 
   carregaDadosEmployee() {

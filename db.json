@@ -26,7 +26,7 @@
     },
     {
       "id": 6,
-      "name": "Funcionario Z",
+      "name": "Funcionario ZZ",
       "salary": 600,
       "bonus": "1000000"
     },
@@ -45,13 +45,13 @@
     {
       "name": "teste",
       "salary": 0,
-      "bonus": 0,
+      "bonus": "50000",
       "id": 9
     },
     {
       "name": "teste",
       "salary": 0,
-      "bonus": 0,
+      "bonus": "2000",
       "id": 10
     }
   ]
